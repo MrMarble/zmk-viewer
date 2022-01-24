@@ -1,0 +1,10 @@
+linters:
+  enable:
+    - bodyclose
+    - godot
+    - revive
+    - asciicheck
+    - bidichk
+    - depguard
+    - unconvert
+    - gofmt
