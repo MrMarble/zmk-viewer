@@ -1,4 +1,5 @@
 out
+dist
 *.png
 *.keymap
 *.json
