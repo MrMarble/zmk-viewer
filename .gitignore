@@ -3,3 +3,6 @@ dist
 *.png
 *.keymap
 *.json
+coverage.txt
+.task
+zmk-layout-viewer
