@@ -76,7 +76,7 @@ func createContext(layout *keyboard.Layout) *gg.Context {
 
 	log.Debug().Int("Image Width", imageW).Int("Image Height", imageH).Send()
 
-	return gg.NewContext(int(imageW), imageH)
+	return gg.NewContext(imageW, imageH)
 }
 
 func drawLayer(layer *keymap.Layer, layout *keyboard.Layout, output string, transparent bool) error {
