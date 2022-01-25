@@ -8,3 +8,4 @@ linters:
     - depguard
     - unconvert
     - gofumpt
+    - lll
