@@ -37,19 +37,25 @@ func Generate(board string, file string, trasnparent bool, output string) error 
 
 		for _, layer := range ast.Sections[len(ast.Sections)-1].Device.Keymap.Layers {
 			for _, layout := range l {
-				drawLayer(layer, &layout, output)
+				err = drawLayer(layer, &layout, output, trasnparent)
+				if err != nil {
+					return err
+				}
 			}
 		}
 	} else {
 		for _, layout := range l {
-			drawLayer(nil, &layout, output)
+			err = drawLayer(nil, &layout, output, trasnparent)
+			if err != nil {
+				return err
+			}
 		}
 	}
 
 	return nil
 }
 
-func drawLayer(layer *keymap.Layer, layout *keyboard.Layout, output string) error {
+func drawLayer(layer *keymap.Layer, layout *keyboard.Layout, output string, transparent bool) error {
 	mx := maxX(layout.Layout) + 1
 	my := maxY(layout.Layout) + 1
 
@@ -71,8 +77,10 @@ func drawLayer(layer *keymap.Layer, layout *keyboard.Layout, output string) erro
 		return err
 	}
 
-	dc.SetHexColor("#bfb6af")
-	dc.Clear()
+	if !transparent {
+		dc.SetHexColor("#bfb6af")
+		dc.Clear()
+	}
 
 	if layer != nil {
 		dc.SetRGB(0., 0., 0.)
@@ -96,11 +104,17 @@ func drawLayer(layer *keymap.Layer, layout *keyboard.Layout, output string) erro
 	}
 	if layer != nil {
 		log.Info().Str("output", fmt.Sprintf("%v/%v.png", output, layer.Name)).Msg("Layout generaged!")
-		dc.SavePNG(fmt.Sprintf("%v/%v.png", output, layer.Name))
+		err = dc.SavePNG(fmt.Sprintf("%v/%v.png", output, layer.Name))
+		if err != nil {
+			return err
+		}
 	} else {
 		log.Info().Str("output", fmt.Sprintf("%v/layout.png", output)).Msg("Layout generated!")
 
-		dc.SavePNG(fmt.Sprintf("%v/layout.png", output))
+		err = dc.SavePNG(fmt.Sprintf("%v/layout.png", output))
+		if err != nil {
+			return err
+		}
 	}
 	return nil
 }
