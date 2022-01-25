@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/alecthomas/kong"
-	zmklayoutviewer "github.com/mrmarble/zmk-layout-viewer/internal/zmk-layout-viewer"
+	"github.com/mrmarble/zmk-layout-viewer/internal/lib"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
@@ -17,23 +17,26 @@ func (d debugFlag) BeforeApply() error {
 	return nil
 }
 
-var cli struct {
-	Keyboard string `arg:"" help:"Keyboard name to fetch layout."`
+type Globals struct {
+	Debug debugFlag `short:"D" help:"Enable debug mode"`
+}
 
-	File        string `optional:"" short:"f" type:"existingfile" help:"ZMK .keymap file"`
-	Transparent bool   `optional:"" short:"t" help:"Use a transparent background."`
-	Output      string `optional:"" short:"o" type:"existingdir" default:"." help:"Output directory."`
-
-	Debug debugFlag `help:"Enable debug logging."`
+type CLI struct {
+	Globals
+	Generate lib.GenerateCmd `cmd:"" help:"Generate layout image."`
 }
 
 func main() {
-	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 	log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr, TimeFormat: time.RFC3339})
 
-	ctx := kong.Parse(&cli)
+	cli := CLI{}
 
-	err := zmklayoutviewer.Generate(cli.Keyboard, cli.File, cli.Transparent, cli.Output)
+	ctx := kong.Parse(&cli,
+		kong.Name("zmk-viewer"),
+		kong.Description("A cli tool for visualizing zmk layouts"),
+		kong.UsageOnError())
+
+	err := ctx.Run()
 	ctx.FatalIfErrorf(err)
 }

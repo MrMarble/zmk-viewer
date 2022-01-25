@@ -22,10 +22,13 @@ type Layout struct {
 	Layout []Key `json:"layout"`
 }
 
-type Keyboard struct {
-	Name    string            `json:"keyboard_name"`
-	Layouts map[string]Layout `json:"layouts"`
-}
+type (
+	Layouts  map[string]Layout
+	Keyboard struct {
+		Name    string  `json:"keyboard_name"`
+		Layouts Layouts `json:"layouts"`
+	}
+)
 
 type file struct {
 	Keyboards map[string]Keyboard `json:"keyboards"`
@@ -69,7 +72,7 @@ func fetch(url string) (*file, error) {
 	return &f, nil
 }
 
-func Fetch(name string) (map[string]Layout, error) {
+func Fetch(name string) (Layouts, error) {
 	log.Debug().Str("name", name).Send()
 	url := "https://keyboards.qmk.fm/v1/keyboards/%v/info.json"
 

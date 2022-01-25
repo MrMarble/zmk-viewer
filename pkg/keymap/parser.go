@@ -15,15 +15,9 @@ var parser = participle.MustBuild(&File{},
 type File struct {
 	Pos lexer.Position
 
-	Sections []*Section `parser:"( @@ ';'* )*"`
-}
-
-type Section struct {
-	Pos lexer.Position
-
 	Includes []*Include `parser:"@@+"`
-	Configs  []*Config  `parser:"| @@"`
-	Device   *Device    `parser:"| '/' '{' @@ '}'';'"`
+	Configs  []*Config  `parser:"@@"`
+	Device   *Device    `parser:"'/' '{' @@ '}'';'"`
 }
 
 type Include struct {
@@ -35,7 +29,7 @@ type Include struct {
 type Config struct {
 	Pos lexer.Position
 
-	Behavior string `parser:"'&'@Ident '{' '}'"`
+	Behavior string `parser:"'&'@Ident '{' '}'';'"`
 }
 
 type Device struct {
