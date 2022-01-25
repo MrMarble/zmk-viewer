@@ -1,6 +1,6 @@
 out
 dist
-*.png
+/*.png
 *.keymap
 *.json
 coverage.txt
