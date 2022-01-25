@@ -57,7 +57,6 @@ func fetch(url string) (*file, error) {
 	body, readErr := ioutil.ReadAll(res.Body)
 	if readErr != nil {
 		return nil, readErr
-
 	}
 
 	f := file{}

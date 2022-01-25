@@ -5,4 +5,4 @@ dist
 *.json
 coverage.txt
 .task
-zmk-layout-viewer
+/zmk-layout-viewer

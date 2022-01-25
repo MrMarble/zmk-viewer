@@ -7,11 +7,9 @@ import (
 	"github.com/alecthomas/participle/lexer"
 )
 
-var (
-	parser = participle.MustBuild(&File{},
-		participle.UseLookahead(2),
-		participle.Unquote("String"),
-	)
+var parser = participle.MustBuild(&File{},
+	participle.UseLookahead(2),
+	participle.Unquote("String"),
 )
 
 type File struct {
