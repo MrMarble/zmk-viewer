@@ -7,8 +7,8 @@ import (
 
 	"github.com/fogleman/gg"
 	"github.com/golang/freetype/truetype"
-	"github.com/mrmarble/zmk-layout-viewer/pkg/keyboard"
-	"github.com/mrmarble/zmk-layout-viewer/pkg/keymap"
+	"github.com/mrmarble/zmk-viewer/pkg/keyboard"
+	"github.com/mrmarble/zmk-viewer/pkg/keymap"
 	"github.com/rs/zerolog/log"
 	"golang.org/x/image/font/gofont/goregular"
 )

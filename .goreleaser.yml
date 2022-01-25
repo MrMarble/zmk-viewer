@@ -1,4 +1,4 @@
-project_name: zmk-layout-viewer
+project_name: zmk-viewer
 
 before:
   hooks:
@@ -7,17 +7,17 @@ before:
 release:
   github:
     owner: mrmarble
-    name: zmk-layout-viewer
+    name: zmk-viewer
 
 builds:
-  - binary: zmk-layout-viewer
+  - binary: zmk-viewer
     env:
       - CGO_ENABLED=0
     goos:
       - linux
       - windows
       - darwin
-    main: ./cmd/zmk-layout-viewer
+    main: ./cmd/zmk-viewer
 
 archives:
   - format: tar.gz

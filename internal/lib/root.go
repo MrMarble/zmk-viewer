@@ -6,7 +6,7 @@ import (
 	"image/png"
 	"os"
 
-	"github.com/mrmarble/zmk-layout-viewer/pkg/keyboard"
+	"github.com/mrmarble/zmk-viewer/pkg/keyboard"
 	"github.com/rs/zerolog/log"
 )
 

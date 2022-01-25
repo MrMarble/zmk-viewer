@@ -6,3 +6,4 @@ dist
 coverage.txt
 .task
 /zmk-layout-viewer
+/zmk-viewer

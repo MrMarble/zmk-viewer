@@ -1,4 +1,4 @@
-module github.com/mrmarble/zmk-layout-viewer
+module github.com/mrmarble/zmk-viewer
 
 go 1.17
 

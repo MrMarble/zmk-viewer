@@ -31,7 +31,7 @@ tasks:
     generates:
       - ./goreleaser
     cmds:
-      - go build ./cmd/zmk-layout-viewer
+      - go build ./cmd/zmk-viewer
 
   test:
     desc: Run tests

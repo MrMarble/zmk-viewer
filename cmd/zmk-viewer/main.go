@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/alecthomas/kong"
-	"github.com/mrmarble/zmk-layout-viewer/internal/lib"
+	"github.com/mrmarble/zmk-viewer/internal/lib"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 )
