@@ -32,7 +32,7 @@ zmk-viewer generate cradio
 ```
 Will output this image:
 
-![](assets/layout.png)
+![](assets/cradio.png)
 
 You can pass a .keymap file ([this one for reference](https://github.com/zmkfirmware/zmk/blob/main/app/boards/shields/cradio/cradio.keymap)) to generate the layout with bindings
 
