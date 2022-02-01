@@ -5,6 +5,7 @@ import (
 	"image"
 	"image/png"
 	"os"
+	"path"
 
 	"github.com/mrmarble/zmk-viewer/pkg/keyboard"
 	"github.com/rs/zerolog/log"
@@ -34,7 +35,7 @@ func (g *GenerateCmd) Run() error {
 		}
 
 		base := ctx.Image()
-		images[fmt.Sprintf("%s/%s.png", g.Output, g.KeyboardName)] = base
+		images[path.Join(g.Output, fmt.Sprintf("%s.png", g.KeyboardName))] = base
 
 		if keymap, ok := parseKeymap(g.File); ok {
 			for _, layer := range keymap.Device.Keymap.Layers {
@@ -44,7 +45,7 @@ func (g *GenerateCmd) Run() error {
 				if err != nil {
 					return err
 				}
-				images[fmt.Sprintf("%s/%s_%s.png", g.Output, g.KeyboardName, layer.Name)] = ctx.Image()
+				images[path.Join(g.Output, fmt.Sprintf("%s_%s.png", g.KeyboardName, layer.Name))] = ctx.Image()
 			}
 		}
 	}
