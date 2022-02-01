@@ -1,0 +1,12 @@
+.git
+.gitattributes
+.github
+README.md
+assets
+.task
+dist
+out
+*.png
+*.txt
+LICENSE
+*.yml
