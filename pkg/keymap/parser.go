@@ -29,7 +29,17 @@ type Include struct {
 type Config struct {
 	Pos lexer.Position
 
-	Behavior string `parser:"'&'@Ident '{' '}'';'"`
+	Behavior string     `parser:"'&'@Ident '{'"`
+	Values   []*Options `parser:"@@* '}'';'"`
+}
+
+type Options struct {
+	Key   *string `parser:"@Ident '='"`
+	Value *Value  `parser:"@@ ';'"`
+}
+type Value struct {
+	String *string `parser:"  @String"`
+	Number *int    `parser:"| '<'@Int'>'"`
 }
 
 type Device struct {
