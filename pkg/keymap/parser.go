@@ -3,8 +3,8 @@ package keymap
 import (
 	"io"
 
-	"github.com/alecthomas/participle"
-	"github.com/alecthomas/participle/lexer"
+	"github.com/alecthomas/participle/v2"
+	"github.com/alecthomas/participle/v2/lexer"
 )
 
 var parser = participle.MustBuild(&File{},
@@ -93,6 +93,6 @@ type Behavior struct {
 
 func Parse(r io.Reader) (*File, error) {
 	ast := &File{}
-	err := parser.Parse(r, ast)
+	err := parser.Parse("", r, ast)
 	return ast, err
 }
