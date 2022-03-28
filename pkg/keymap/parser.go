@@ -96,3 +96,7 @@ func Parse(r io.Reader) (*File, error) {
 	err := parser.Parse("", r, ast)
 	return ast, err
 }
+
+func Enbf() string {
+	return parser.String()
+}

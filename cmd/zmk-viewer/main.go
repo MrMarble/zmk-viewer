@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/alecthomas/kong"
+	"github.com/mrmarble/zmk-viewer/internal/debug"
 	"github.com/mrmarble/zmk-viewer/internal/lib"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -24,6 +25,7 @@ type Globals struct {
 type CLI struct {
 	Globals
 	Generate lib.GenerateCmd `cmd:"" help:"Generate layout image."`
+	Enbf     debug.EnbfCmd   `cmd:"" help:"Print ENBF from parser."`
 }
 
 func main() {
