@@ -7,6 +7,7 @@ import (
 	"os"
 	"path"
 
+	"github.com/mrmarble/zmk-viewer/internal/template"
 	"github.com/mrmarble/zmk-viewer/pkg/keyboard"
 	"github.com/rs/zerolog/log"
 )
@@ -17,14 +18,22 @@ type GenerateCmd struct {
 	File        string `optional:"" short:"f" type:"existingfile" help:"ZMK .keymap file"`
 	Transparent bool   `optional:"" short:"t" help:"Use a transparent background."`
 	Output      string `optional:"" short:"o" type:"existingdir" default:"." help:"Output directory."`
+	Template    string `optional:"" type:"existingfile" help:"Template to generate Layout"`
 }
 
 func (g *GenerateCmd) Run() error {
 	images := make(map[string]image.Image)
 
-	keyboardInfo, err := keyboard.Fetch(g.KeyboardName)
-	if err != nil {
-		return err
+	var keyboardInfo keyboard.Layouts
+	var err error
+
+	if g.Template != "" {
+		keyboardInfo, err = fromTemplate(g.Template)
+	} else {
+		keyboardInfo, err = fromRemote(g.KeyboardName)
+		if err != nil {
+			return err
+		}
 	}
 
 	for _, layout := range keyboardInfo {
@@ -63,4 +72,22 @@ func (g *GenerateCmd) Run() error {
 	}
 
 	return nil
+}
+
+func fromTemplate(name string) (keyboard.Layouts, error) {
+	tpl, err := template.FromFile(name)
+	if err != nil {
+		return nil, err
+	}
+	l := keyboard.Layouts{}
+	l[tpl.Keyboard.Name] = keyboard.FromTemplate(*tpl)
+	return l, nil
+}
+
+func fromRemote(name string) (keyboard.Layouts, error) {
+	keyboardInfo, err := keyboard.Fetch(name)
+	if err != nil {
+		return nil, err
+	}
+	return keyboardInfo, nil
 }
