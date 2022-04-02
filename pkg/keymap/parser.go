@@ -16,6 +16,7 @@ type File struct {
 	Pos lexer.Position
 
 	Includes []*Include `parser:"@@+"`
+	Defines  []*Define  `parser:"@@*"`
 	Configs  []*Config  `parser:"@@"`
 	Device   *Device    `parser:"'/' '{' @@ '}'';'"`
 }
@@ -24,6 +25,11 @@ type Include struct {
 	Pos lexer.Position
 
 	Value string `parser:"'#'Ident'<'@((Ident ('-' Ident)? '/'?)* ('.' Ident))'>'"`
+}
+type Define struct {
+	Pos lexer.Position
+
+	Value string `parser:"'#'Ident @Ident (Ident|Int)"`
 }
 
 type Config struct {
@@ -81,7 +87,7 @@ type Layer struct {
 
 type List struct {
 	Number  *int32  `parser:"@Int"`
-	KeyCode *string `parser:"| @(Ident ('('Ident')')?)"`
+	KeyCode *string `parser:"| @(Ident('('Ident('('Ident')')?')')?)"`
 }
 
 type Behavior struct {

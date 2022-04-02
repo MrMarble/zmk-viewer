@@ -27,6 +27,7 @@ func parseKeymap(file string) (*keymap.File, bool) {
 	log.Info().Msg("Parsing keymap file.")
 	r, err := os.Open(file)
 	if err != nil {
+		log.Err(err).Send()
 		return nil, false
 	}
 
@@ -34,6 +35,7 @@ func parseKeymap(file string) (*keymap.File, bool) {
 	defer r.Close()
 
 	if err != nil {
+		log.Err(err).Send()
 		return nil, false
 	}
 	return ast, true
