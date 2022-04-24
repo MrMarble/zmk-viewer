@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-var keymapFile = `
+var cradioKeymapFile = `
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -104,10 +104,69 @@ var keymapFile = `
 };
 `
 
+var sofleKeymapFile = `/*
+* Copyright (c) 2020 The ZMK Contributors
+*
+* SPDX-License-Identifier: MIT
+*/
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+/ {
+	 keymap {
+			 compatible = "zmk,keymap";
+
+			 default_layer {
+					 bindings = <
+&kp GRAVE &kp N1 &kp N2   &kp N3   &kp N4    &kp N5                      &kp N6 &kp N7    &kp N8    &kp N9   &kp N0   &none
+&kp ESC   &kp Q  &kp W    &kp E    &kp R     &kp T                       &kp Y  &kp U     &kp I     &kp O    &kp P    &kp BSPC
+&kp TAB   &kp A  &kp S    &kp D    &kp F     &kp G                       &kp H  &kp J     &kp K     &kp L    &kp SEMI &kp SQT
+&kp LSHFT &kp Z  &kp X    &kp C    &kp V     &kp B  &kp C_MUTE &none     &kp N  &kp M     &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
+								&kp LGUI &kp LALT &kp LCTRL &mo 1  &kp RET    &kp SPACE &mo 2  &kp RCTRL &kp RALT  &kp RGUI
+					 >;
+
+					 sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+			 };
+
+			 lower_layer {
+					 bindings = <
+&trans    &kp F1    &kp F2    &kp F3      &kp F4    &kp F5                    &kp F6    &kp F7   &kp F8          &kp F9    &kp F10   &kp F11
+&kp GRAVE &kp N1    &kp N2    &kp N3      &kp N4    &kp N5                    &kp N6    &kp N7   &kp N8          &kp N9    &kp N0    &kp F12
+&trans    &kp EXCL  &kp AT    &kp HASH    &kp DLLR  &kp PRCNT                 &kp CARET &kp AMPS &kp KP_MULTIPLY &kp LPAR  &kp RPAR  &kp PIPE
+&trans    &kp EQUAL &kp MINUS &kp KP_PLUS &kp LBRC  &kp RBRC  &trans   &trans &kp LBKT  &kp RBKT &kp SEMI        &kp COLON &kp BSLH  &trans
+									 &trans    &trans      &trans    &trans    &trans   &trans &trans    &trans   &trans          &trans
+					 >;
+
+					 sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+			 };
+
+			 raise_layer {
+					 bindings = <
+&bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4             &trans    &trans    &trans   &trans    &trans  &trans
+&trans     &kp INS      &kp PSCRN    &kp K_CMENU  &trans       &trans                   &kp PG_UP &trans    &kp UP   &trans    &kp N0  &trans
+&trans     &kp LALT     &kp LCTRL    &kp LSHFT    &trans       &kp CLCK                 &kp PG_DN &kp LEFT  &kp DOWN &kp RIGHT &kp DEL &kp BSPC
+&trans     &kp K_UNDO   &kp K_CUT    &kp K_COPY   &kp K_PASTE  &trans  &trans   &trans  &trans    &trans    &trans   &trans    &trans  &trans
+											 &trans       &trans       &trans       &trans  &trans   &trans  &trans    &trans    &trans   &trans
+					 >;
+
+					 sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+			 };
+	 };
+};
+`
+
 func Test(t *testing.T) {
-	r := strings.NewReader(keymapFile)
-	_, err := Parse(r)
-	if err != nil {
-		t.Fatal(err)
+	cradioRaw := strings.NewReader(cradioKeymapFile)
+	_, cradioErr := Parse(cradioRaw)
+	if cradioErr != nil {
+		t.Fatal(cradioErr)
+	}
+
+	sofleRaw := strings.NewReader(sofleKeymapFile)
+	_, sofleErr := Parse(sofleRaw)
+	if sofleErr != nil {
+		t.Fatal(sofleErr)
 	}
 }
