@@ -17,7 +17,7 @@ type File struct {
 
 	Includes []*Include `parser:"@@+"`
 	Defines  []*Define  `parser:"@@*"`
-	Configs  []*Config  `parser:"@@"`
+	Configs  []*Config  `parser:"@@*"`
 	Device   *Device    `parser:"'/' '{' @@ '}'';'"`
 }
 
@@ -51,7 +51,7 @@ type Value struct {
 type Device struct {
 	Pos lexer.Position
 
-	Combos *Combos `parser:"'combos' '{' @@"`
+	Combos *Combos `parser:"('combos' '{' @@)?"`
 	Keymap *Keymap `parser:"'keymap' '{' @@"`
 }
 
@@ -81,8 +81,10 @@ type Keymap struct {
 type Layer struct {
 	Pos lexer.Position
 
-	Name     string      `parser:"@Ident '{'"`
-	Bindings []*Behavior `parser:"'bindings' '=' '<'@@+'>'';' '}'';'"`
+	Name           string      `parser:"@Ident '{'"`
+	Bindings       []*Behavior `parser:"'bindings' '=' '<'@@+'>'';'"`
+	SensorBindings []*Behavior `parser:"('sensor''-''bindings' '=' '<'@@+'>'';')?"`
+	EndBrace       string      `parser:" '}'';'"`
 }
 
 type List struct {
