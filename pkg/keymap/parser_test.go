@@ -104,6 +104,7 @@ var cradioKeymapFile = `
 };
 `
 
+//nolint:lll // ignoring line length because of visual spacing
 var sofleKeymapFile = `/*
 * Copyright (c) 2020 The ZMK Contributors
 *
