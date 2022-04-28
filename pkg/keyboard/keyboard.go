@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/mrmarble/zmk-viewer/internal/template"
 	"github.com/rs/zerolog/log"
 )
 
@@ -83,4 +84,49 @@ func Fetch(name string) (Layouts, error) {
 
 	l := f.Keyboards[name].Layouts
 	return l, nil
+}
+
+func FromTemplate(tpl template.Template) Layout {
+	layout := Layout{}
+	lastColumn := 0
+
+	generate := func(offset, last int) {
+		for x, column := range tpl.Keyboard.Columns {
+			for y := 0; y < column.Keys; y++ {
+				var h float64 = 1
+				layout.Layout = append(layout.Layout, Key{X: float64(x + offset), Y: float64(y) + column.Step, W: 1, H: &h})
+			}
+			lastColumn++
+		}
+		for _, key := range tpl.Keyboard.Keys {
+			w := key.W
+			h := key.H
+
+			if w == 0 { // TODO: Implement custom Unmarshaller to handle this
+				w = 1
+			}
+			if h == 0 {
+				h = 1
+			}
+			layout.Layout = append(layout.Layout, Key{X: float64(key.Column + offset - last), Y: float64(key.Row) + key.Step, H: &h, W: w})
+			if key.Column > lastColumn {
+				lastColumn = key.Column
+			}
+		}
+	}
+	generate(0, 0)
+	if tpl.Keyboard.Mirror {
+		tpl.Keyboard.Columns = reverse(tpl.Keyboard.Columns)
+		generate(lastColumn+3, lastColumn+1)
+	}
+	return layout
+}
+
+func reverse(columns []template.Column) []template.Column {
+	rev := []template.Column{}
+	for i := range columns {
+		// reverse the order
+		rev = append(rev, columns[len(columns)-1-i])
+	}
+	return rev
 }
