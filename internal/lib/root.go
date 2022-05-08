@@ -1,7 +1,6 @@
 package lib
 
 import (
-	"fmt"
 	"image"
 	"image/png"
 	"os"
@@ -29,7 +28,7 @@ func (g *GenerateCmd) Run() error {
 	}
 	g.KeyboardName = strings.ReplaceAll(g.KeyboardName, "/", "_")
 
-	for _, layout := range keyboardInfo {
+	for layoutName, layout := range keyboardInfo {
 		ctx := createContext(&layout)
 		err := drawLayout(ctx, g.Transparent, layout)
 		if err != nil {
@@ -37,7 +36,7 @@ func (g *GenerateCmd) Run() error {
 		}
 
 		base := ctx.Image()
-		images[path.Join(g.Output, fmt.Sprintf("%s.png", g.KeyboardName))] = base
+		images[generateName(g.Output, g.KeyboardName, layoutName, "")] = base
 
 		if keymap, ok := parseKeymap(g.File); ok {
 			for _, layer := range keymap.Device.Keymap.Layers {
@@ -47,7 +46,7 @@ func (g *GenerateCmd) Run() error {
 				if err != nil {
 					return err
 				}
-				images[path.Join(g.Output, fmt.Sprintf("%s_%s.png", g.KeyboardName, layer.Name))] = ctx.Image()
+				images[generateName(g.Output, g.KeyboardName, layoutName, layer.Name)] = ctx.Image()
 			}
 		}
 	}
@@ -65,4 +64,15 @@ func (g *GenerateCmd) Run() error {
 	}
 
 	return nil
+}
+
+func generateName(output, name, layout, layer string) string {
+	file := name
+	if layout != "LAYOUT" {
+		file += "_" + strings.ReplaceAll(layout, "LAYOUT_", "")
+	}
+	if layer != "" {
+		file += "_" + layer
+	}
+	return path.Join(output, file+".png")
 }
