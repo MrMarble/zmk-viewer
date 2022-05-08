@@ -26,6 +26,7 @@ type Include struct {
 
 	Value string `parser:"'#'Ident'<'@((Ident ('-' Ident)? '/'?)* ('.' Ident))'>'"`
 }
+
 type Define struct {
 	Pos lexer.Position
 
@@ -43,6 +44,7 @@ type Options struct {
 	Key   *string `parser:"@Ident '='"`
 	Value *Value  `parser:"@@ ';'"`
 }
+
 type Value struct {
 	String *string `parser:"  @String"`
 	Number *int    `parser:"| '<'@Int'>'"`

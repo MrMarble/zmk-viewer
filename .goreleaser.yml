@@ -18,6 +18,10 @@ builds:
       - windows
       - darwin
     main: ./cmd/zmk-viewer
+    flags:
+      - -trimpath
+    mod_timestamp: '{{ .CommitTimestamp }}'
+    ldflags: -s -w -X main.version={{.Version}} -X main.commit={{.ShortCommit}} -X main.date={{.CommitDate}}
 
 archives:
   - format: tar.gz
