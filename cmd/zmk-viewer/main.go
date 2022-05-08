@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"time"
 
@@ -11,10 +12,29 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
-type debugFlag bool
+type (
+	debugFlag   bool
+	VersionFlag string
+)
+
+var (
+	// Populated by goreleaser during build.
+	version = "master"
+	commit  = "?"
+	date    = ""
+)
 
 func (d debugFlag) BeforeApply() error {
 	zerolog.SetGlobalLevel(zerolog.DebugLevel)
+	return nil
+}
+
+func (v VersionFlag) Decode(ctx *kong.DecodeContext) error { return nil }
+func (v VersionFlag) IsBool() bool                         { return true }
+func (v VersionFlag) BeforeApply(app *kong.Kong) error {
+	fmt.Printf("zmk-viewer has version %s built from %s on %s\n", version, commit, date)
+	app.Exit(0)
+
 	return nil
 }
 
@@ -24,6 +44,7 @@ type Globals struct {
 
 type CLI struct {
 	Globals
+	Version  VersionFlag     `name:"version" help:"Print version information and quit"`
 	Generate lib.GenerateCmd `cmd:"" help:"Generate layout image."`
 	Enbf     debug.EnbfCmd   `cmd:"" help:"Print ENBF from parser."`
 }
