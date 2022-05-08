@@ -6,6 +6,7 @@ import (
 	"image/png"
 	"os"
 	"path"
+	"strings"
 
 	"github.com/mrmarble/zmk-viewer/pkg/keyboard"
 	"github.com/rs/zerolog/log"
@@ -26,6 +27,7 @@ func (g *GenerateCmd) Run() error {
 	if err != nil {
 		return err
 	}
+	g.KeyboardName = strings.ReplaceAll(g.KeyboardName, "/", "_")
 
 	for _, layout := range keyboardInfo {
 		ctx := createContext(&layout)
