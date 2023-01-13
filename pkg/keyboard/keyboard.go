@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"time"
 
 	"github.com/rs/zerolog/log"
@@ -32,6 +33,10 @@ type (
 
 type file struct {
 	Keyboards map[string]Keyboard `json:"keyboards"`
+}
+
+type localfile struct {
+	Layouts map[string]Layout
 }
 
 func fetch(url string) (*file, error) {
@@ -72,8 +77,30 @@ func fetch(url string) (*file, error) {
 	return &f, nil
 }
 
-func Fetch(name string) (Layouts, error) {
+func load(path string) (*localfile, error) {
+	data, err := os.ReadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	f := localfile{}
+	err = json.Unmarshal(data, &f)
+	if err != nil {
+		return nil, err
+	}
+	return &f, nil
+}
+
+func LoadKeyboard(name, path string) (Layouts, error) {
 	log.Debug().Str("name", name).Send()
+	if path != "" {
+		f, err := load(path)
+		if err != nil {
+			return nil, err
+		}
+		l := f.Layouts
+		return l, nil
+	}
+
 	url := "https://keyboards.qmk.fm/v1/keyboards/%v/info.json"
 
 	f, err := fetch(fmt.Sprintf(url, name))
