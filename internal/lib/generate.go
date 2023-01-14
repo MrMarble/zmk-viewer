@@ -62,20 +62,17 @@ func drawLayout(ctx *gg.Context, transparent bool, layout keyboard.Layout) error
 	}
 
 	for _, key := range layout.Layout {
-		w := keySize
-		h := keySize
 		x := key.X*keySize + spacer*key.X + spacer
 		y := key.Y*keySize + spacer*key.Y + (fontSize + spacer*2)
-
+		w := keySize
+		h := keySize
 		if key.H != nil {
 			h = *key.H * keySize
 		}
 		if key.W != nil {
 			w = *key.W * keySize
 		}
-
 		ctx.DrawRoundedRectangle(x, y, w, h, spacer)
-
 		ctx.SetRGB(0., 0., 0.)
 		ctx.StrokePreserve()
 		ctx.SetRGB(1.0, 1.0, 1.0)
