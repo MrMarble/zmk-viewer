@@ -1,7 +1,7 @@
 # ZMK viewer
 
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/mrmarble/zmk-layout-viewer)
-[![Vuln](https://github.com/MrMarble/zmk-layout-viewer/actions/workflows/vuln.yml/badge.svg)](https://github.com/MrMarble/zmk-layout-viewer/actions/workflows/vuln.yml)
+[![CodeQL](https://github.com/MrMarble/zmk-viewer/actions/workflows/codeql.yml/badge.svg)](https://github.com/MrMarble/zmk-viewer/actions/workflows/codeql.yml)
 [![golangci-lint](https://github.com/MrMarble/zmk-layout-viewer/actions/workflows/golangci-lint.yml/badge.svg)](https://github.com/MrMarble/zmk-layout-viewer/actions/workflows/golangci-lint.yml)
 
 A **work in progress** Cli tool to generate preview images from a zmk .keymap file.
