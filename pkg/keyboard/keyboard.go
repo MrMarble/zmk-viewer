@@ -73,7 +73,7 @@ func fetch(url string) (*file, error) {
 	return &f, nil
 }
 
-func load(path string) (*Keyboard, error) {
+func loadFile(path string) (*Keyboard, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
@@ -86,17 +86,8 @@ func load(path string) (*Keyboard, error) {
 	return &f, nil
 }
 
-func LoadKeyboard(name, path string) (Layouts, error) {
+func Fetch(name string) (Layouts, error) {
 	log.Debug().Str("name", name).Send()
-	if path != "" {
-		f, err := load(path)
-		if err != nil {
-			return nil, err
-		}
-		l := f.Layouts
-		return l, nil
-	}
-
 	url := "https://keyboards.qmk.fm/v1/keyboards/%v/info.json"
 
 	f, err := fetch(fmt.Sprintf(url, name))
@@ -106,4 +97,16 @@ func LoadKeyboard(name, path string) (Layouts, error) {
 
 	l := f.Keyboards[name].Layouts
 	return l, nil
+}
+
+func LoadFile(name, path string) (Layouts, error) {
+	log.Debug().Str("name", name).Send()
+	log.Debug().Str("path", path).Send()
+	f, err := loadFile(path)
+	if err != nil {
+		return nil, err
+	}
+	l := f.Layouts
+	return l, nil
+
 }

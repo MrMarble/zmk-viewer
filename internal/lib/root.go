@@ -23,10 +23,18 @@ type GenerateCmd struct {
 func (g *GenerateCmd) Run() error {
 	images := make(map[string]image.Image)
 
-	keyboardInfo, err := keyboard.LoadKeyboard(g.KeyboardName, g.LayoutFile)
+	var keyboardInfo keyboard.Layouts
+	var err error
+	if g.LayoutFile != "" {
+		keyboardInfo, err = keyboard.LoadFile(g.KeyboardName, g.LayoutFile)
+	} else {
+		keyboardInfo, err = keyboard.Fetch(g.KeyboardName)
+	}
+
 	if err != nil {
 		return err
 	}
+
 	g.KeyboardName = strings.ReplaceAll(g.KeyboardName, "/", "_")
 
 	for layoutName, layout := range keyboardInfo {
