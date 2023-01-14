@@ -35,10 +35,6 @@ type file struct {
 	Keyboards map[string]Keyboard `json:"keyboards"`
 }
 
-type localfile struct {
-	Layouts map[string]Layout
-}
-
 func fetch(url string) (*file, error) {
 	log.Info().Msg("Fetching keyboard layout.")
 	log.Debug().Str("url", url).Send()
@@ -77,12 +73,12 @@ func fetch(url string) (*file, error) {
 	return &f, nil
 }
 
-func load(path string) (*localfile, error) {
+func load(path string) (*Keyboard, error) {
 	data, err := os.ReadFile(path)
 	if err != nil {
 		return nil, err
 	}
-	f := localfile{}
+	f := Keyboard{}
 	err = json.Unmarshal(data, &f)
 	if err != nil {
 		return nil, err
