@@ -1,8 +1,10 @@
 package generate
 
 import (
+	"image"
 	"image/png"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/mrmarble/zmk-viewer/internal/img"
@@ -18,15 +20,16 @@ type Cmd struct {
 
 	Transparent bool `optional:"" short:"t" help:"Use a transparent background."`
 	Raw         bool `optional:"" short:"r" help:"Draw the ZMK codes instead of the key labels."`
+	Single      bool `optional:"" short:"s" help:"Generate a single image."`
 
 	Output string `optional:"" short:"o" type:"existingdir" default:"." help:"Output directory."`
 }
 
 func (g *Cmd) Run() error {
-	return generate(strings.ReplaceAll(g.KeyboardName, "/", "_"), g.LayoutFile, g.Output, g.File, g.Transparent, g.Raw)
+	return generate(strings.ReplaceAll(g.KeyboardName, "/", "_"), g.LayoutFile, g.Output, g.File, g.Transparent, g.Raw, g.Single)
 }
 
-func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent, isRaw bool) error {
+func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent, isRaw, single bool) error {
 	var layouts keyboard.Layouts
 	var err error
 	if layoutFile != "" {
@@ -57,15 +60,28 @@ func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent
 		options = append(options, img.WithRaw())
 	}
 
-	img := img.New(kbd, options...) // TODO: add options
+	img := img.New(kbd, options...)
 
-	images, err := img.GenerateLayouts()
+	var images map[string]image.Image
+
+	if single {
+		outputImage, err := img.GenerateSingle()
+		if err != nil {
+			return err
+		}
+		images = map[string]image.Image{
+			keyboardName + ".png": outputImage,
+		}
+	} else {
+		images, err = img.GenerateLayouts()
+	}
+
 	if err != nil {
 		return err
 	}
 
 	for path, image := range images {
-		f, err := os.Create(path)
+		f, err := os.Create(filepath.Join(output, path))
 		if err != nil {
 			return err
 		}

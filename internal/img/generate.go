@@ -3,6 +3,7 @@ package img
 import (
 	"fmt"
 	"image"
+	"image/draw"
 	"math"
 	"os"
 	"strings"
@@ -59,7 +60,6 @@ func WithKeymap(keymap string) func(*Image) {
 }
 
 func (i *Image) GenerateLayouts() (map[string]image.Image, error) {
-	log.Info().Msg("Generating separate images for each layout...")
 	images := make(map[string]image.Image)
 	for layoutName, layout := range i.keyboard.Layouts {
 		layout := layout
@@ -86,6 +86,28 @@ func (i *Image) GenerateLayouts() (map[string]image.Image, error) {
 	}
 
 	return images, nil
+}
+
+func (i *Image) GenerateSingle() (image.Image, error) {
+	layers, err := i.GenerateLayouts()
+	if err != nil {
+		return nil, err
+	}
+	first := true
+	var output *image.RGBA
+	var rect image.Rectangle
+	height := 0
+	for _, layer := range layers {
+		if first {
+			first = false
+			rect = image.Rect(0, 0, layer.Bounds().Dx(), layer.Bounds().Dy()*(len(layers)-1))
+			output = image.NewRGBA(rect)
+			continue
+		}
+		draw.Draw(output, image.Rect(0, height, layer.Bounds().Dx(), layer.Bounds().Dy()+height), layer, image.Point{0, 0}, draw.Src)
+		height += layer.Bounds().Dy()
+	}
+	return output, nil
 }
 
 func generateName(name, layout, layer string) string {
