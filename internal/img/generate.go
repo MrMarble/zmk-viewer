@@ -2,8 +2,10 @@ package img
 
 import (
 	"fmt"
+	"image"
 	"math"
 	"os"
+	"strings"
 
 	"github.com/fogleman/gg"
 	"github.com/golang/freetype/truetype"
@@ -21,8 +23,84 @@ const (
 	fontSize = 10.0
 )
 
-// ParseKeymap returns struct from a .keymap file.
-func ParseKeymap(file string) (*keymap.File, bool) {
+type Image struct {
+	transparent bool
+	raw         bool
+	keyboard    keyboard.Keyboard
+	keymap      string
+}
+
+func New(keyboard keyboard.Keyboard, options ...func(*Image)) *Image {
+	i := &Image{
+		keyboard: keyboard,
+	}
+	for _, option := range options {
+		option(i)
+	}
+	return i
+}
+
+func WithTransparent() func(*Image) {
+	return func(i *Image) {
+		i.transparent = true
+	}
+}
+
+func WithRaw() func(*Image) {
+	return func(i *Image) {
+		i.raw = true
+	}
+}
+
+func WithKeymap(keymap string) func(*Image) {
+	return func(i *Image) {
+		i.keymap = keymap
+	}
+}
+
+func (i *Image) GenerateLayouts() (map[string]image.Image, error) {
+	log.Info().Msg("Generating separate images for each layout...")
+	images := make(map[string]image.Image)
+	for layoutName, layout := range i.keyboard.Layouts {
+		layout := layout
+		ctx := createContext(&layout)
+		err := drawLayout(ctx, i.transparent, layout)
+		if err != nil {
+			return nil, err
+		}
+
+		base := ctx.Image()
+		images[generateName(i.keyboard.Name, layoutName, "")] = base
+
+		if keymap, ok := parseKeymap(i.keymap); ok {
+			for _, layer := range keymap.Device.Keymap.Layers {
+				ctx := createContext(&layout)
+				ctx.DrawImage(base, 0, 0)
+				err := drawKeymap(ctx, layout, layer, i.raw)
+				if err != nil {
+					return nil, err
+				}
+				images[generateName(i.keyboard.Name, layoutName, layer.Name)] = ctx.Image()
+			}
+		}
+	}
+
+	return images, nil
+}
+
+func generateName(name, layout, layer string) string {
+	file := name
+	if layout != "LAYOUT" {
+		file += "_" + strings.ReplaceAll(layout, "LAYOUT_", "")
+	}
+	if layer != "" {
+		file += "_" + layer
+	}
+	return file + ".png"
+}
+
+// parseKeymap returns struct from a .keymap file.
+func parseKeymap(file string) (*keymap.File, bool) {
 	if file == "" {
 		return nil, false
 	}
@@ -43,8 +121,8 @@ func ParseKeymap(file string) (*keymap.File, bool) {
 	return ast, true
 }
 
-// CreateContext from the calculated keyboard size.
-func CreateContext(layout *keyboard.Layout) *gg.Context {
+// createContext from the calculated keyboard size.
+func createContext(layout *keyboard.Layout) *gg.Context {
 	mx := maxX(layout.Layout) + 1
 	my := maxY(layout.Layout) + 1
 
@@ -57,7 +135,7 @@ func CreateContext(layout *keyboard.Layout) *gg.Context {
 }
 
 // drawLaout of the keyboard. Blank keys.
-func DrawLayout(ctx *gg.Context, transparent bool, layout keyboard.Layout) error {
+func drawLayout(ctx *gg.Context, transparent bool, layout keyboard.Layout) error {
 	if !transparent {
 		ctx.SetHexColor("#eeeeee")
 		ctx.Clear()
@@ -85,8 +163,8 @@ func DrawLayout(ctx *gg.Context, transparent bool, layout keyboard.Layout) error
 	return nil
 }
 
-// DrawKeymap of the keyboard. Legend on top of the keys.
-func DrawKeymap(ctx *gg.Context, layout keyboard.Layout, layer *keymap.Layer) error {
+// drawKeymap of the keyboard. Legend on top of the keys.
+func drawKeymap(ctx *gg.Context, layout keyboard.Layout, layer *keymap.Layer, raw bool) error {
 	font, err := truetype.Parse(goregular.TTF)
 	if err != nil {
 		return err
@@ -100,7 +178,7 @@ func DrawKeymap(ctx *gg.Context, layout keyboard.Layout, layer *keymap.Layer) er
 
 	for i, key := range layout.Layout {
 		x, y := getKeyCoords(key)
-		drawBehavior(ctx, layer.Bindings[i], x+margin+3, y+margin*2.5)
+		drawBehavior(ctx, layer.Bindings[i], x+margin+3, y+margin*2.5, raw)
 	}
 	return nil
 }
@@ -112,15 +190,17 @@ func getKeyCoords(key keyboard.Key) (float64, float64) {
 	return x, y
 }
 
-func drawBehavior(ctx *gg.Context, key *keymap.Behavior, x float64, y float64) {
+func drawBehavior(ctx *gg.Context, key *keymap.Behavior, x float64, y float64, raw bool) {
 	log.Debug().Str("Action", key.Action).Interface("Params", key.Params).Send()
 	ctx.SetRGB(0., 0., 0.)
 	for i, v := range key.Params {
 		str := ""
 		if v.KeyCode == nil {
 			str += fmt.Sprintf("%v", *v.Number)
-		} else {
+		} else if raw {
 			str += *v.KeyCode
+		} else {
+			str += keymap.GetSymbol(*v.KeyCode)
 		}
 
 		_, dh := ctx.MeasureString(str)

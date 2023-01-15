@@ -1,10 +1,8 @@
 package generate
 
 import (
-	"image"
 	"image/png"
 	"os"
-	"path"
 	"strings"
 
 	"github.com/mrmarble/zmk-viewer/internal/img"
@@ -19,51 +17,51 @@ type Cmd struct {
 	LayoutFile string `optional:"" short:"l" type:"existingfile" help:"info.json file"`
 
 	Transparent bool `optional:"" short:"t" help:"Use a transparent background."`
+	Raw         bool `optional:"" short:"r" help:"Draw the ZMK codes instead of the key labels."`
 
 	Output string `optional:"" short:"o" type:"existingdir" default:"." help:"Output directory."`
 }
 
 func (g *Cmd) Run() error {
-	return generate(strings.ReplaceAll(g.KeyboardName, "/", "_"), g.LayoutFile, g.Output, g.File, g.Transparent)
+	return generate(strings.ReplaceAll(g.KeyboardName, "/", "_"), g.LayoutFile, g.Output, g.File, g.Transparent, g.Raw)
 }
 
-func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent bool) error {
-	images := make(map[string]image.Image)
-
-	var keyboardInfo keyboard.Layouts
+func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent, isRaw bool) error {
+	var layouts keyboard.Layouts
 	var err error
 	if layoutFile != "" {
-		keyboardInfo, err = keyboard.LoadFile(keyboardName, layoutFile)
+		layouts, err = keyboard.LoadFile(keyboardName, layoutFile)
 	} else {
-		keyboardInfo, err = keyboard.Fetch(keyboardName)
+		layouts, err = keyboard.Fetch(keyboardName)
 	}
 
 	if err != nil {
 		return err
 	}
 
-	for layoutName, layout := range keyboardInfo {
-		layout := layout
-		ctx := img.CreateContext(&layout)
-		err := img.DrawLayout(ctx, isTransparent, layout)
-		if err != nil {
-			return err
-		}
+	kbd := keyboard.Keyboard{
+		Name:    keyboardName,
+		Layouts: layouts,
+	}
 
-		base := ctx.Image()
-		images[generateName(output, keyboardName, layoutName, "")] = base
+	options := []func(*img.Image){}
+	if isTransparent {
+		options = append(options, img.WithTransparent())
+	}
 
-		if keymap, ok := img.ParseKeymap(keymapFile); ok {
-			for _, layer := range keymap.Device.Keymap.Layers {
-				ctx := img.CreateContext(&layout)
-				ctx.DrawImage(base, 0, 0)
-				err := img.DrawKeymap(ctx, layout, layer)
-				if err != nil {
-					return err
-				}
-				images[generateName(output, keyboardName, layoutName, layer.Name)] = ctx.Image()
-			}
-		}
+	if keymapFile != "" {
+		options = append(options, img.WithKeymap(keymapFile))
+	}
+
+	if isRaw {
+		options = append(options, img.WithRaw())
+	}
+
+	img := img.New(kbd, options...) // TODO: add options
+
+	images, err := img.GenerateLayouts()
+	if err != nil {
+		return err
 	}
 
 	for path, image := range images {
@@ -79,15 +77,4 @@ func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent
 	}
 
 	return nil
-}
-
-func generateName(output, name, layout, layer string) string {
-	file := name
-	if layout != "LAYOUT" {
-		file += "_" + strings.ReplaceAll(layout, "LAYOUT_", "")
-	}
-	if layer != "" {
-		file += "_" + layer
-	}
-	return path.Join(output, file+".png")
 }
