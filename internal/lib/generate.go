@@ -108,9 +108,9 @@ func drawBehavior(ctx *gg.Context, key *keymap.Behavior, x float64, y float64) {
 	for i, v := range key.Params {
 		str := ""
 		if v.KeyCode == nil {
-			str = str + fmt.Sprintf("%v", *v.Number)
+			str += fmt.Sprintf("%v", *v.Number)
 		} else {
-			str = str + *v.KeyCode
+			str += *v.KeyCode
 		}
 
 		dw, dh := ctx.MeasureString(str)

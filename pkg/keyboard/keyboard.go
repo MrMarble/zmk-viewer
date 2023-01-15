@@ -3,7 +3,7 @@ package keyboard
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"time"
@@ -43,7 +43,7 @@ func fetch(url string) (*file, error) {
 		Timeout: time.Second * 5, // Timeout after 2 seconds
 	}
 
-	req, err := http.NewRequest(http.MethodGet, url, nil)
+	req, err := http.NewRequest(http.MethodGet, url, http.NoBody)
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func fetch(url string) (*file, error) {
 		defer res.Body.Close()
 	}
 
-	body, readErr := ioutil.ReadAll(res.Body)
+	body, readErr := io.ReadAll(res.Body)
 	if readErr != nil {
 		return nil, readErr
 	}
@@ -108,5 +108,4 @@ func LoadFile(name, path string) (Layouts, error) {
 	}
 	l := f.Layouts
 	return l, nil
-
 }

@@ -29,8 +29,8 @@ func (d debugFlag) BeforeApply() error {
 	return nil
 }
 
-func (v VersionFlag) Decode(ctx *kong.DecodeContext) error { return nil }
-func (v VersionFlag) IsBool() bool                         { return true }
+func (v VersionFlag) Decode(_ *kong.DecodeContext) error { return nil }
+func (v VersionFlag) IsBool() bool                       { return true }
 func (v VersionFlag) BeforeApply(app *kong.Kong) error {
 	fmt.Printf("zmk-viewer has version %s built from %s on %s\n", version, commit, date)
 	app.Exit(0)

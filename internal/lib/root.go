@@ -15,7 +15,7 @@ type GenerateCmd struct {
 	KeyboardName string `arg:"" help:"Keyboard name to fetch layout."`
 
 	File        string `optional:"" short:"f" type:"existingfile" help:"ZMK .keymap file"`
-	LayoutFile  string `optional:"" short:"l" type:"layoutfile" help:"info.json file"`
+	LayoutFile  string `optional:"" short:"l" type:"existingfile" help:"info.json file"`
 	Transparent bool   `optional:"" short:"t" help:"Use a transparent background."`
 	Output      string `optional:"" short:"o" type:"existingdir" default:"." help:"Output directory."`
 }
@@ -38,6 +38,7 @@ func (g *GenerateCmd) Run() error {
 	g.KeyboardName = strings.ReplaceAll(g.KeyboardName, "/", "_")
 
 	for layoutName, layout := range keyboardInfo {
+		layout := layout
 		ctx := createContext(&layout)
 		err := drawLayout(ctx, g.Transparent, layout)
 		if err != nil {
