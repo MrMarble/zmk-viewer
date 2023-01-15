@@ -281,7 +281,6 @@ func drawBehavior(ctx *gg.Context, key *keymap.Behavior, x float64, y float64, r
 		ctx.DrawString(str, x, y-h/2.+44)
 		ctx.SetRGB(0., 0., 0.)
 	}
-
 }
 
 func maxX(l []keyboard.Key) float64 {
