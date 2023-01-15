@@ -1,4 +1,4 @@
-package debug
+package enbf
 
 import (
 	"fmt"
@@ -6,9 +6,9 @@ import (
 	"github.com/mrmarble/zmk-viewer/pkg/keymap"
 )
 
-type EnbfCmd struct{}
+type Cmd struct{}
 
-func (e *EnbfCmd) Run() error {
+func (e *Cmd) Run() error {
 	fmt.Print(keymap.Enbf())
 	return nil
 }
