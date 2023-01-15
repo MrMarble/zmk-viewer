@@ -15,6 +15,7 @@ type GenerateCmd struct {
 	KeyboardName string `arg:"" help:"Keyboard name to fetch layout."`
 
 	File        string `optional:"" short:"f" type:"existingfile" help:"ZMK .keymap file"`
+	LayoutFile  string `optional:"" short:"l" type:"layoutfile" help:"info.json file"`
 	Transparent bool   `optional:"" short:"t" help:"Use a transparent background."`
 	Output      string `optional:"" short:"o" type:"existingdir" default:"." help:"Output directory."`
 }
@@ -22,10 +23,18 @@ type GenerateCmd struct {
 func (g *GenerateCmd) Run() error {
 	images := make(map[string]image.Image)
 
-	keyboardInfo, err := keyboard.Fetch(g.KeyboardName)
+	var keyboardInfo keyboard.Layouts
+	var err error
+	if g.LayoutFile != "" {
+		keyboardInfo, err = keyboard.LoadFile(g.KeyboardName, g.LayoutFile)
+	} else {
+		keyboardInfo, err = keyboard.Fetch(g.KeyboardName)
+	}
+
 	if err != nil {
 		return err
 	}
+
 	g.KeyboardName = strings.ReplaceAll(g.KeyboardName, "/", "_")
 
 	for layoutName, layout := range keyboardInfo {
