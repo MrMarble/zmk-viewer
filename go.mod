@@ -14,4 +14,5 @@ require (
 require (
 	github.com/alecthomas/repr v0.0.0-20220113201626-b1b626ac65ae // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/stretchr/testify v1.8.1 // indirect
 )
