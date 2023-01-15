@@ -76,7 +76,7 @@ func (i *Image) GenerateLayouts() (map[string]image.Image, error) {
 			for _, layer := range keymap.Device.Keymap.Layers {
 				ctx := createContext(&layout)
 				ctx.DrawImage(base, 0, 0)
-				err := drawKeymap(ctx, layout, layer, i.raw)
+				err := drawKeymap(ctx, layout, layer, i.raw, -1)
 				if err != nil {
 					return nil, err
 				}
@@ -108,6 +108,29 @@ func (i *Image) GenerateSingle() (image.Image, error) {
 		height += layer.Bounds().Dy()
 	}
 	return output, nil
+}
+
+func (i *Image) GenerateUnified() (image.Image, error) {
+	for _, layout := range i.keyboard.Layouts {
+		layout := layout
+		ctx := createContext(&layout)
+		err := drawLayout(ctx, i.transparent, layout)
+		if err != nil {
+			return nil, err
+		}
+
+		base := ctx.Image()
+		if keymap, ok := parseKeymap(i.keymap); ok {
+			for layerIndex, layer := range keymap.Device.Keymap.Layers {
+				err := drawKeymap(ctx, layout, layer, i.raw, layerIndex)
+				if err != nil {
+					return nil, err
+				}
+			}
+		}
+		return base, nil
+	}
+	return nil, fmt.Errorf("no layout found")
 }
 
 func generateName(name, layout, layer string) string {
@@ -186,7 +209,7 @@ func drawLayout(ctx *gg.Context, transparent bool, layout keyboard.Layout) error
 }
 
 // drawKeymap of the keyboard. Legend on top of the keys.
-func drawKeymap(ctx *gg.Context, layout keyboard.Layout, layer *keymap.Layer, raw bool) error {
+func drawKeymap(ctx *gg.Context, layout keyboard.Layout, layer *keymap.Layer, raw bool, layerNum int) error {
 	font, err := truetype.Parse(goregular.TTF)
 	if err != nil {
 		return err
@@ -196,11 +219,13 @@ func drawKeymap(ctx *gg.Context, layout keyboard.Layout, layer *keymap.Layer, ra
 	ctx.SetFontFace(face)
 
 	ctx.SetRGB(0., 0., 0.)
-	ctx.DrawString(layer.Name, spacer, fontSize+spacer)
+	if layerNum == -1 {
+		ctx.DrawString(layer.Name, spacer, fontSize+spacer)
+	}
 
 	for i, key := range layout.Layout {
 		x, y := getKeyCoords(key)
-		drawBehavior(ctx, layer.Bindings[i], x+margin+3, y+margin*2.5, raw)
+		drawBehavior(ctx, layer.Bindings[i], x+margin+3, y+margin*2.5, raw, layerNum)
 	}
 	return nil
 }
@@ -212,23 +237,51 @@ func getKeyCoords(key keyboard.Key) (float64, float64) {
 	return x, y
 }
 
-func drawBehavior(ctx *gg.Context, key *keymap.Behavior, x float64, y float64, raw bool) {
+func drawBehavior(ctx *gg.Context, key *keymap.Behavior, x float64, y float64, raw bool, layerNum int) {
 	log.Debug().Str("Action", key.Action).Interface("Params", key.Params).Send()
-	ctx.SetRGB(0., 0., 0.)
-	for i, v := range key.Params {
-		str := ""
-		if v.KeyCode == nil {
-			str += fmt.Sprintf("%v", *v.Number)
-		} else if raw {
-			str += *v.KeyCode
-		} else {
-			str += keymap.GetSymbol(*v.KeyCode)
-		}
-
-		_, dh := ctx.MeasureString(str)
-		ctx.DrawString(str, x, y-dh/2.+float64(i)*10.)
-
+	if key.Params == nil || len(key.Params) == 0 {
+		return
 	}
+	leyend := key.Params[0]
+	if len(key.Params) > 1 {
+		leyend = key.Params[1]
+	}
+	str := ""
+	if leyend.KeyCode == nil {
+		str += fmt.Sprintf("%v", *leyend.Number)
+	} else if raw {
+		str += *leyend.KeyCode
+	} else {
+		str += keymap.GetSymbol(*leyend.KeyCode)
+	}
+
+	w, h := ctx.MeasureString(str)
+	dx, dy := 0., 0.
+	if layerNum == 1 {
+		ctx.SetHexColor("#5ff84a")
+		dx, dy = 38-w, 0
+	} else if layerNum == 2 {
+		ctx.SetHexColor("#f84a4a")
+		dx, dy = 38-w, 28
+	} else if layerNum == 3 {
+		ctx.SetHexColor("#482af8")
+		dx, dy = 0, 28
+	}
+	ctx.DrawString(str, x+dx, y-h/2.+dy)
+	if len(key.Params) > 1 {
+		ctx.SetHexColor("#eeeeee")
+		str := ""
+		if key.Params[0].KeyCode == nil {
+			str += fmt.Sprintf("%v", *key.Params[0].Number)
+		} else if raw {
+			str += *key.Params[0].KeyCode
+		} else {
+			str += keymap.GetSymbol(*key.Params[0].KeyCode)
+		}
+		ctx.DrawString(str, x, y-h/2.+44)
+		ctx.SetRGB(0., 0., 0.)
+	}
+
 }
 
 func maxX(l []keyboard.Key) float64 {

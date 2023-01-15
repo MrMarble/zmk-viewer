@@ -18,18 +18,18 @@ type Cmd struct {
 	File       string `optional:"" short:"f" type:"existingfile" help:"ZMK .keymap file"`
 	LayoutFile string `optional:"" short:"l" type:"existingfile" help:"info.json file"`
 
-	Transparent bool `optional:"" short:"t" help:"Use a transparent background."`
-	Raw         bool `optional:"" short:"r" help:"Draw the ZMK codes instead of the key labels."`
-	Single      bool `optional:"" short:"s" help:"Generate a single image."`
-
-	Output string `optional:"" short:"o" type:"existingdir" default:"." help:"Output directory."`
+	Transparent bool   `optional:"" short:"t" help:"Use a transparent background."`
+	Raw         bool   `optional:"" short:"r" help:"Draw the ZMK codes instead of the key labels."`
+	Single      bool   `optional:"" short:"s" help:"Generate a single image."`
+	Unified     bool   `optional:"" short:"u" help:"Generate a single image with all the layers."`
+	Output      string `optional:"" short:"o" type:"existingdir" default:"." help:"Output directory."`
 }
 
 func (g *Cmd) Run() error {
-	return generate(strings.ReplaceAll(g.KeyboardName, "/", "_"), g.LayoutFile, g.Output, g.File, g.Transparent, g.Raw, g.Single)
+	return generate(strings.ReplaceAll(g.KeyboardName, "/", "_"), g.LayoutFile, g.Output, g.File, g.Transparent, g.Raw, g.Single, g.Unified)
 }
 
-func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent, isRaw, single bool) error {
+func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent, isRaw, single, unified bool) error {
 	var layouts keyboard.Layouts
 	var err error
 	if layoutFile != "" {
@@ -66,6 +66,14 @@ func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent
 
 	if single {
 		outputImage, err := img.GenerateSingle()
+		if err != nil {
+			return err
+		}
+		images = map[string]image.Image{
+			keyboardName + ".png": outputImage,
+		}
+	} else if unified {
+		outputImage, err := img.GenerateUnified()
 		if err != nil {
 			return err
 		}
