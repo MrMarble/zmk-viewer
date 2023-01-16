@@ -70,8 +70,7 @@ func fetch(url string) (*file, error) {
 	log.Info().Msg("Fetching keyboard layout.")
 	log.Debug().Str("url", url).Send()
 
-	resp, err := http.Get(url)
-
+	resp, err := http.Get(url) //nolint:gosec
 	if err != nil {
 		return nil, err
 	}

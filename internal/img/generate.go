@@ -363,7 +363,6 @@ func (k *keycap) draw(ctx *gg.Context) {
 		_, sh := ctx.MeasureString(k.layer3)
 		ctx.DrawString(k.layer3, k.x+margin+3, k.y+k.h-sh-margin)
 	}
-
 }
 
 func maxX(l []keyboard.Key) float64 {

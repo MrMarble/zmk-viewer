@@ -17,7 +17,7 @@ func GetSymbol(key string) string {
 	case "SPC":
 		return "Spc" // "␣"
 	case "RET", "RETURN", "ENTER":
-		return "Enter" //"⏎"
+		return "Enter" // "⏎"
 	case "CMMA":
 		return ","
 	case "DOT":
