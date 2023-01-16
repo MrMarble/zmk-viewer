@@ -15,9 +15,9 @@ func GetSymbol(key string) string {
 	case "LALT", "RALT":
 		return "Alt" // "⌥"
 	case "SPC":
-		return "Space" // "␣"
+		return "Spc" // "␣"
 	case "RET", "RETURN", "ENTER":
-		return "Enter" // "⏎"
+		return "Enter" //"⏎"
 	case "CMMA":
 		return ","
 	case "DOT":
@@ -25,11 +25,11 @@ func GetSymbol(key string) string {
 	case "QUOT":
 		return "'"
 	case "TAB":
-		return "Tab" // "⇥"
+		return "⇥"
 	case "ESC":
-		return "Esc" // "⎋"
+		return "⎋"
 	case "DEL":
-		return "Supr" // "⌦"
+		return "⌦"
 	case "RBKT":
 		return "]"
 	case "LBKT":
@@ -55,7 +55,7 @@ func GetSymbol(key string) string {
 	case "GRAVE":
 		return "`"
 	case "LGUI", "RGUI":
-		return "Win" // "⌘"
+		return "⌘"
 	case "UP":
 		return "↑"
 	case "DOWN":
@@ -65,7 +65,7 @@ func GetSymbol(key string) string {
 	case "RIGHT":
 		return "→"
 	case "BKSP":
-		return "Backspace" // "⌫"
+		return "⌫"
 	case "UNDER":
 		return "_"
 	case "CARET", "CRRT":
@@ -106,6 +106,12 @@ func GetSymbol(key string) string {
 		return "VolDn" // "🔉"
 	case "K_MUTE":
 		return "Mute" // "🔇"
+	case "BT_NXT":
+		return "BT+" // "⏭"
+	case "BT_PRV":
+		return "BT-" // "⏮"
+	case "BT_CLR":
+		return "BTClr" // "⏯"
 	}
 	return key
 }
