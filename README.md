@@ -42,13 +42,17 @@ Arguments:
   <keyboard-name>    Keyboard name to fetch layout.
 
 Flags:
-  -h, --help           Show context-sensitive help.
-  -D, --debug          Enable debug mode
-      --version        Print version information and quit
+  -h, --help                  Show context-sensitive help.
+  -D, --debug                 Enable debug mode
+      --version               Print version information and quit
 
-  -f, --file=STRING    ZMK .keymap file
-  -t, --transparent    Use a transparent background.
-  -o, --output="."     Output directory.
+  -f, --file=STRING           ZMK .keymap file
+  -l, --layout-file=STRING    info.json file
+  -t, --transparent           Use a transparent background.
+  -r, --raw                   Draw the ZMK codes instead of the key labels.
+  -s, --single                Generate a single image.
+  -u, --unified               Generate a single image with all the layers.
+  -o, --output="."            Output directory.
 ```
 
 Keyboard name should be the same as in https://config.qmk.fm.
@@ -58,16 +62,37 @@ zmk-viewer generate cradio
 ```
 Will output this image:
 
-![](assets/cradio.png)
+![](assets/cradio_split_3x5_2.png)
 
 You can pass a .keymap file ([this one for reference](https://github.com/zmkfirmware/zmk/blob/main/app/boards/shields/cradio/cradio.keymap)) to generate the layout with bindings
+
+
+### Normal
 
 ```shell
 zmk-viewer generate -f ~/zmk-config/config/cradio.keymap cradio
 ```
 will output an image for each layer:
 
-![](assets/cradio_default_layer.png)
-![](assets/cradio_left_layer.png)
-![](assets/cradio_right_layer.png)
-![](assets/cradio_tri_layer.png)
+![](assets/cradio_split_3x5_2_default_layer.png)
+![](assets/cradio_split_3x5_2_left_layer.png)
+![](assets/cradio_split_3x5_2_right_layer.png)
+![](assets/cradio_split_3x5_2_tri_layer.png)
+
+### Single
+
+```shell
+zmk-viewer generate -f ~/zmk-config/config/cradio.keymap cradio --single
+```
+will output one image with all layers:
+
+![](assets/single.png)
+
+### Unified
+
+```shell
+zmk-viewer generate -f ~/zmk-config/config/cradio.keymap cradio --unified
+```
+will output one image with all layers stacked:
+
+![](assets/unified.png)
