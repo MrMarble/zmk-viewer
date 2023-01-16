@@ -1,4 +1,4 @@
-package keyboard
+package infojson
 
 import (
 	"net/http"
