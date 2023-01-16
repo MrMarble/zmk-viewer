@@ -8,7 +8,7 @@ import (
 	"strings"
 
 	"github.com/mrmarble/zmk-viewer/internal/img"
-	"github.com/mrmarble/zmk-viewer/pkg/keyboard"
+	"github.com/mrmarble/zmk-viewer/pkg/infojson"
 	"github.com/rs/zerolog/log"
 )
 
@@ -30,19 +30,19 @@ func (g *Cmd) Run() error {
 }
 
 func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent, isRaw, single, unified bool) error {
-	var layouts keyboard.Layouts
+	var layouts infojson.Layouts
 	var err error
 	if layoutFile != "" {
-		layouts, err = keyboard.LoadFile(keyboardName, layoutFile)
+		layouts, err = infojson.FromFile(keyboardName, layoutFile)
 	} else {
-		layouts, err = keyboard.Fetch(keyboardName)
+		layouts, err = infojson.FromName(keyboardName)
 	}
 
 	if err != nil {
 		return err
 	}
 
-	kbd := keyboard.Keyboard{
+	kbd := infojson.Keyboard{
 		Name:    keyboardName,
 		Layouts: layouts,
 	}
