@@ -71,6 +71,9 @@ func fetch(url string) (*file, error) {
 	log.Debug().Str("url", url).Send()
 
 	resp, err := http.Get(url) //nolint:gosec
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("could not fetch keyboard layout: %v", resp.Status)
+	}
 	if err != nil {
 		return nil, err
 	}

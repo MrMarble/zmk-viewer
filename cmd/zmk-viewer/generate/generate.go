@@ -26,7 +26,7 @@ type Cmd struct {
 }
 
 func (g *Cmd) Run() error {
-	return generate(strings.ReplaceAll(g.KeyboardName, "/", "_"), g.LayoutFile, g.Output, g.File, g.Transparent, g.Raw, g.Single, g.Unified)
+	return generate(g.KeyboardName, g.LayoutFile, g.Output, g.File, g.Transparent, g.Raw, g.Single, g.Unified)
 }
 
 func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent, isRaw, single, unified bool) error {
@@ -89,7 +89,8 @@ func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent
 	}
 
 	for path, image := range images {
-		f, err := os.Create(filepath.Join(output, path))
+		sanitized := strings.ReplaceAll(path, "/", "_")
+		f, err := os.Create(filepath.Join(output, sanitized))
 		if err != nil {
 			return err
 		}
@@ -97,7 +98,7 @@ func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent
 		if err = png.Encode(f, image); err != nil {
 			return nil
 		}
-		log.Info().Str("Path", path).Msg("Image saved")
+		log.Info().Str("Path", sanitized).Msg("Image saved")
 	}
 
 	return nil
