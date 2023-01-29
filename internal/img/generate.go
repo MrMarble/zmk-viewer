@@ -378,8 +378,12 @@ func maxX(l []keyboard.Key) float64 {
 func maxY(l []keyboard.Key) float64 {
 	curr := 0.
 	for _, v := range l {
-		if v.Y > curr {
-			curr = v.Y
+		height := v.Y
+		if v.H != nil {
+			height += *v.H - 1
+		}
+		if height > curr {
+			curr = height
 		}
 	}
 	return curr
