@@ -60,6 +60,8 @@ func main() {
 		kong.Description("A cli tool for visualizing zmk layouts"),
 		kong.UsageOnError())
 
+	fmt.Printf("zmk-viewer %s\n", version)
+
 	err := ctx.Run()
 	ctx.FatalIfErrorf(err)
 }
