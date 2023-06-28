@@ -42,7 +42,7 @@ function get_zmk-viewer() {
       DIST="linux-arm64"
     fi
   elif [ "${KERNEL}" == "Darwin" ]; then
-    EXT="zip"
+    EXT="tar.gz"
     if [ "${MACHINE}" == "x86_64" ]; then
       DIST="darwin-amd64"
     elif [ "${MACHINE}" == "arm64" ]; then
@@ -74,7 +74,11 @@ function get_zmk-viewer() {
   FILENAME="zmk-viewer-${VER}-${DIST}.${EXT}"
 
   echo " - Downloading ${URL}/${FILENAME}"
-  TMP_DIR=$(mktemp --directory)
+  if [ "${KERNEL}" == "Darwin" ]; then
+    TMP_DIR=$(mktemp -d)
+  else
+    TMP_DIR=$(mktemp --directory)
+  fi
   curl -sLo "${TMP_DIR}/${FILENAME}" "${URL}/${FILENAME}"
 
   echo " - Unpacking ${FILENAME}"
