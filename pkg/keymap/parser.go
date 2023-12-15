@@ -84,6 +84,7 @@ type Layer struct {
 	Pos lexer.Position
 
 	Name           string      `parser:"@Ident '{'"`
+	DisplayName    string      `parser:"('display-name' '=' @String';')?"`
 	Bindings       []*Behavior `parser:"'bindings' '=' '<'@@+'>'';'"`
 	SensorBindings []*Behavior `parser:"('sensor''-''bindings' '=' '<'@@+'>'';')?"`
 	EndBrace       string      `parser:" '}'';'"`
