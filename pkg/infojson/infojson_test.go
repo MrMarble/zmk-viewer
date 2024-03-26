@@ -8,7 +8,7 @@ import (
 
 func Test(t *testing.T) {
 	// Start a local HTTP server
-	server := httptest.NewServer(http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
+	server := httptest.NewServer(http.HandlerFunc(func(rw http.ResponseWriter, _ *http.Request) {
 		// Send response to be tested
 		_, err := rw.Write([]byte(`{
 			"keyboards": {
