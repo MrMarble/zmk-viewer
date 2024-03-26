@@ -22,21 +22,11 @@ linters:
 linters-settings:
   gocritic:
     enabled-checks:
-      - appendAssign
       - appendCombine
-      - argOrder
-      - assignOp
-      - badCond
       - boolExprSimplify
-      - captLocal
-      - caseOrder
-      - commentFormatting
       - commentedOutCode
       - commentedOutImport
-      - defaultCaseOrder
       - deferUnlambda
-      - dupCase
-      - elseif
       - filepathJoin
       - hexLiteral
       - httpNoBody

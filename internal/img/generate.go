@@ -280,13 +280,15 @@ func (k *keycap) fromKey(key *keymap.Binding, parseKeyCode bool) *keycap {
 
 func formatKeyCode(key *keymap.List, parseKeyCode bool) string {
 	str := ""
-	if key.KeyCode == nil {
+	switch {
+	case key.KeyCode == nil:
 		str += fmt.Sprintf("%v", *key.Number)
-	} else if parseKeyCode {
+	case parseKeyCode:
 		str += keymap.GetSymbol(*key.KeyCode)
-	} else {
+	default:
 		str += *key.KeyCode
 	}
+
 	if strings.HasPrefix(str, "LC") {
 		str = "⌃" + str[3:len(str)-1]
 	}

@@ -64,7 +64,8 @@ func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent
 
 	var images map[string]image.Image
 
-	if single {
+	switch {
+	case single:
 		outputImage, err := img.GenerateSingle()
 		if err != nil {
 			return err
@@ -72,7 +73,7 @@ func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent
 		images = map[string]image.Image{
 			keyboardName + ".png": outputImage,
 		}
-	} else if unified {
+	case unified:
 		outputImage, err := img.GenerateUnified()
 		if err != nil {
 			return err
@@ -80,8 +81,9 @@ func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent
 		images = map[string]image.Image{
 			keyboardName + ".png": outputImage,
 		}
-	} else {
+	default:
 		images, err = img.GenerateLayouts()
+
 	}
 
 	if err != nil {
