@@ -7,8 +7,7 @@ import (
 	"github.com/alecthomas/participle/v2/lexer"
 )
 
-var parser = participle.MustBuild(&File{},
-	participle.UseLookahead(2),
+var parser = participle.MustBuild[File](participle.UseLookahead(2),
 	participle.Unquote("String"),
 )
 
@@ -103,8 +102,7 @@ type Behavior struct {
 }
 
 func Parse(r io.Reader) (*File, error) {
-	ast := &File{}
-	err := parser.Parse("", r, ast)
+	ast, err := parser.Parse("", r)
 	return ast, err
 }
 
