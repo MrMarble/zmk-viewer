@@ -29,7 +29,7 @@ type Include struct {
 type Define struct {
 	Pos lexer.Position
 
-	Value string `parser:"'#'Ident @Ident (Ident|Int)"`
+	Value string `parser:"'#'Ident @Ident '('?((Ident|Int)','?)*')'? ('&'Ident Ident Ident)*"`
 }
 
 type Config struct {
@@ -66,10 +66,10 @@ type Combos struct {
 type Combo struct {
 	Pos lexer.Position
 
-	Name         string      `parser:"@Ident '{'"`
-	Timeout      int32       `parser:"'timeout''-''ms' '=' '<'@Int'>'';'"`
-	KeyPositions []*List     `parser:"'key''-''positions' '=' '<'@@+'>'';'"`
-	Bindings     []*Behavior `parser:"'bindings' '=' '<'@@+'>'';' '}'';'"`
+	Name         string     `parser:"@Ident '{'"`
+	Timeout      int32      `parser:"'timeout''-''ms' '=' '<'@Int'>'';'"`
+	KeyPositions []*List    `parser:"'key''-''positions' '=' '<'@@+'>'';'"`
+	Bindings     []*Binding `parser:"'bindings' '=' '<'@@+'>'';' '}'';'"`
 }
 
 type Keymap struct {
@@ -82,11 +82,12 @@ type Keymap struct {
 type Layer struct {
 	Pos lexer.Position
 
-	Name           string      `parser:"@Ident '{'"`
-	DisplayName    string      `parser:"('display-name' '=' @String';')?"`
-	Bindings       []*Behavior `parser:"'bindings' '=' '<'@@+'>'';'"`
-	SensorBindings []*Behavior `parser:"('sensor''-''bindings' '=' '<'@@+'>'';')?"`
-	EndBrace       string      `parser:" '}'';'"`
+	Name           string     `parser:"@Ident '{'"`
+	DisplayName    string     `parser:"('display-name' '=' @String';')?"`
+	Bindings       []*Binding `parser:"'bindings' '=' '<'@@+'>'';'"`
+	SensorBindings []*Binding `parser:"('sensor''-''bindings' '=' '<'@@+'>'';')?"`
+	Label          *string    `parser:"('label' '=' @String ';')?"`
+	EndBrace       string     `parser:" '}'';'"`
 }
 
 type List struct {
@@ -94,7 +95,7 @@ type List struct {
 	KeyCode *string `parser:"| @(Ident('('Ident('('Ident')')?')')?)"`
 }
 
-type Behavior struct {
+type Binding struct {
 	Pos lexer.Position
 
 	Action string  `parser:"'&'@Ident"`

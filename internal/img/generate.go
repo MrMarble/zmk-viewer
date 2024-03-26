@@ -262,7 +262,7 @@ func newKeycap(x, y, w, h float64) *keycap {
 	return &keycap{x: x, y: y, w: w, h: h}
 }
 
-func (k *keycap) fromKey(key *keymap.Behavior, parseKeyCode bool) *keycap {
+func (k *keycap) fromKey(key *keymap.Binding, parseKeyCode bool) *keycap {
 	if key.Params == nil || len(key.Params) == 0 {
 		return k
 	}
@@ -294,7 +294,7 @@ func formatKeyCode(key *keymap.List, parseKeyCode bool) string {
 	return str
 }
 
-func (k *keycap) setLayer(layer int, key *keymap.Behavior, parseKeyCode bool) {
+func (k *keycap) setLayer(layer int, key *keymap.Binding, parseKeyCode bool) {
 	if key.Params == nil || len(key.Params) == 0 {
 		return
 	}
