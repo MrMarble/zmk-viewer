@@ -137,6 +137,10 @@ func (i *Image) GenerateUnified() (image.Image, error) {
 			ctx.SetHexColor("#eeeeee")
 			ctx.Clear()
 		}
+		err := drawLayout(ctx, i.transparent, layout)
+		if err != nil {
+			return nil, err
+		}
 		base := ctx.Image()
 		if hasKeymap {
 			keys := make([]*keycap, len(layout.Layout))
@@ -146,7 +150,6 @@ func (i *Image) GenerateUnified() (image.Image, error) {
 						log.Debug().Msgf("Adding key %d", keyIndex)
 						x, y := getKeyCoords(layout.Layout[keyIndex])
 						keys[keyIndex] = newKeycap(x, y, keySize, keySize).fromKey(key, !i.raw)
-						keys[keyIndex].drawShape(ctx)
 					} else {
 						log.Debug().Msgf("Updating key %d", keyIndex)
 						keys[keyIndex].setLayer(layerIndex, key, !i.raw)
@@ -200,33 +203,15 @@ func parseKeymap(file string) (*keymap.Keymap, bool) {
 	return ast, true
 }
 
-func calculateImageWidth(layout keyboard.Layout) int {
-	currentColumn := -1.0
-	width := 0.0
-	for _, key := range layout.Layout {
-		if key.X > currentColumn {
-			currentColumn = key.X
-			if key.W != nil {
-				width += *key.W*keySize + spacer
-			} else {
-				width += keySize + spacer
-			}
-		}
-	}
-	log.Info().Float64("Width", width).Float64("Columns", currentColumn).Send()
-	return int(width + keySize + spacer)
-}
-
 // createContext from the calculated keyboard size.
 func createContext(layout *keyboard.Layout) *gg.Context {
 	mx := maxX(layout.Layout) + 1
 	my := maxY(layout.Layout) + 1
 
 	imageW := int((mx*keySize)+(mx*spacer)) + spacer
-	//imageW := calculateImageWidth(*layout) + spacer
 	imageH := int(math.Ceil((my*keySize)+(my+1.)*spacer) + (fontSize + spacer*2))
 
-	log.Debug().Int("Image Width", imageW).Int("Image Height", imageH).Float64("Max X", 0).Float64("Max Y", my).Send()
+	log.Debug().Int("Image Width", imageW).Int("Image Height", imageH).Float64("Max Y", my).Send()
 
 	ctx := gg.NewContext(imageW, imageH)
 	f, err := truetype.Parse(firaCode)
@@ -417,10 +402,15 @@ func (k *keycap) draw(ctx *gg.Context) {
 
 func maxX(l []keyboard.Key) float64 {
 	curr := 0.
-	for _, v := range l {
+	lastRow := 0
+	for i, v := range l {
 		if v.X > curr {
 			curr = v.X
+			lastRow = i
 		}
+	}
+	if l[lastRow].W != nil {
+		curr += *l[lastRow].W - 1
 	}
 	return curr
 }

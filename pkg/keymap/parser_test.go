@@ -6,7 +6,6 @@ import (
 	"os"
 	"path/filepath"
 	"runtime"
-	"strconv"
 	"strings"
 	"testing"
 
@@ -14,6 +13,7 @@ import (
 )
 
 func getRoot(t *testing.T) string {
+	t.Helper()
 	_, b, _, _ := runtime.Caller(0)
 
 	// Root folder of this project
@@ -23,26 +23,6 @@ func getRoot(t *testing.T) string {
 func getTestdata(t *testing.T) string {
 	t.Helper()
 	return filepath.Join(getRoot(t), "testdata")
-}
-
-func getParams(t *testing.T, name string) (int, int) {
-	t.Helper()
-	data := strings.Split(name, "_")
-	if len(data) != 3 {
-		t.Fatalf("Expected file %s to have 3 parts", name)
-	}
-
-	out1, err := strconv.Atoi(data[1])
-	if err != nil {
-		t.Fatalf("Expected %s to be an integer", data[1])
-	}
-
-	out2, err := strconv.Atoi(data[2])
-	if err != nil {
-		t.Fatalf("Expected %s to be an integer", data[2])
-	}
-
-	return out1, out2
 }
 
 func getKeyamps(t *testing.T) []fs.DirEntry {
