@@ -36,6 +36,11 @@ type Image struct {
 	keymap      string
 }
 
+type Layer struct {
+	image.Image
+	Name string
+}
+
 func New(keyboard keyboard.Keyboard, options ...func(*Image)) *Image {
 	i := &Image{
 		keyboard: keyboard,
@@ -64,8 +69,8 @@ func WithKeymap(keymap string) func(*Image) {
 	}
 }
 
-func (i *Image) GenerateLayouts() (map[string]image.Image, error) {
-	images := make(map[string]image.Image)
+func (i *Image) GenerateLayouts(drawEmpty bool) ([]Layer, error) {
+	images := make([]Layer, 0)
 	keymap, hasKeymap := parseKeymap(i.keymap)
 	for layoutName, layout := range i.keyboard.Layouts {
 		log.Debug().Str("Layout", layoutName).Msg("Generating layout")
@@ -77,7 +82,9 @@ func (i *Image) GenerateLayouts() (map[string]image.Image, error) {
 		}
 
 		base := ctx.Image()
-		images[generateName(i.keyboard.Name, layoutName, "")] = base
+		if drawEmpty {
+			images = append(images, Layer{Name: generateName(i.keyboard.Name, layoutName, ""), Image: base})
+		}
 
 		if hasKeymap {
 			for _, layer := range keymap.Layers {
@@ -92,7 +99,7 @@ func (i *Image) GenerateLayouts() (map[string]image.Image, error) {
 				if err != nil {
 					return nil, err
 				}
-				images[generateName(i.keyboard.Name, layoutName, layer.Name)] = ctx.Image()
+				images = append(images, Layer{Name: generateName(i.keyboard.Name, layoutName, layer.Name), Image: ctx.Image()})
 			}
 		}
 	}
@@ -101,18 +108,18 @@ func (i *Image) GenerateLayouts() (map[string]image.Image, error) {
 }
 
 func (i *Image) GenerateSingle() (image.Image, error) {
-	layers, err := i.GenerateLayouts()
+	layers, err := i.GenerateLayouts(false)
 	if err != nil {
 		return nil, err
 	}
-	first := true
 	var output *image.RGBA
 	var rect image.Rectangle
 	height := 0
-	for _, layer := range layers {
-		if first {
-			first = false
-			rect = image.Rect(0, 0, layer.Bounds().Dx(), layer.Bounds().Dy()*len(layers))
+
+	totalLayers := len(layers)
+	for i, layer := range layers {
+		if i == 0 {
+			rect = image.Rect(0, 0, layer.Bounds().Dx(), layer.Bounds().Dy()*totalLayers)
 			output = image.NewRGBA(rect)
 		}
 		draw.Draw(output, image.Rect(0, height, layer.Bounds().Dx(), layer.Bounds().Dy()+height), layer, image.Point{0, 0}, draw.Src)

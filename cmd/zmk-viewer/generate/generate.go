@@ -1,7 +1,6 @@
 package generate
 
 import (
-	"image"
 	"image/png"
 	"os"
 	"path/filepath"
@@ -60,29 +59,28 @@ func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent
 		options = append(options, img.WithRaw())
 	}
 
-	img := img.New(kbd, options...)
+	kbdImage := img.New(kbd, options...)
 
-	var images map[string]image.Image
-
+	var images []img.Layer
 	switch {
 	case single:
-		outputImage, err := img.GenerateSingle()
+		outputImage, err := kbdImage.GenerateSingle()
 		if err != nil {
 			return err
 		}
-		images = map[string]image.Image{
-			keyboardName + ".png": outputImage,
+		images = []img.Layer{
+			{Name: keyboardName + ".png", Image: outputImage},
 		}
 	case unified:
-		outputImage, err := img.GenerateUnified()
+		outputImage, err := kbdImage.GenerateUnified()
 		if err != nil {
 			return err
 		}
-		images = map[string]image.Image{
-			keyboardName + ".png": outputImage,
+		images = []img.Layer{
+			{Name: keyboardName + ".png", Image: outputImage},
 		}
 	default:
-		images, err = img.GenerateLayouts()
+		images, err = kbdImage.GenerateLayouts(true)
 
 	}
 
@@ -90,8 +88,8 @@ func generate(keyboardName, layoutFile, output, keymapFile string, isTransparent
 		return err
 	}
 
-	for path, image := range images {
-		sanitized := strings.ReplaceAll(path, "/", "_")
+	for _, image := range images {
+		sanitized := strings.ReplaceAll(image.Name, "/", "_")
 		f, err := os.Create(filepath.Join(output, sanitized))
 		if err != nil {
 			return err
