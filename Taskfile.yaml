@@ -106,5 +106,5 @@ tasks:
         -v `pwd`:/go/src/zmk-viewer \
         -v `pwd`/sysroot:/sysroot \
         -w /go/src/zmk-viewer \
-        ghcr.io/goreleaser/goreleaser-cross:1.22 \
+        ghcr.io/goreleaser/goreleaser-cross:v1.22 \
         release --clean
