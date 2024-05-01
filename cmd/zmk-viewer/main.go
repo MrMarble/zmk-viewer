@@ -6,7 +6,6 @@ import (
 	"time"
 
 	"github.com/alecthomas/kong"
-	"github.com/mrmarble/zmk-viewer/cmd/zmk-viewer/enbf"
 	"github.com/mrmarble/zmk-viewer/cmd/zmk-viewer/generate"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
@@ -46,7 +45,6 @@ type CLI struct {
 	Globals
 	Version  VersionFlag  `name:"version" help:"Print version information and quit"`
 	Generate generate.Cmd `cmd:"" help:"Generate layout image."`
-	Enbf     enbf.Cmd     `cmd:"" help:"Print ENBF from parser. For debugging purposes."`
 }
 
 func main() {
