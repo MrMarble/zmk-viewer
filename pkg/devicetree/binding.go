@@ -2,7 +2,7 @@ package devicetree
 
 // #cgo CFLAGS: -std=c11 -fPIC
 // #cgo LDFLAGS: -Wl,--allow-multiple-definition
-// #include "./parser.c"
+// #include "./tree-sitter-devicetree/src/parser.c"
 import "C"
 
 import (

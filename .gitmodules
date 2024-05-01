@@ -1,0 +1,3 @@
+[submodule "pkg/devicetree/tree-sitter-devicetree"]
+	path = pkg/devicetree/tree-sitter-devicetree
+	url = https://github.com/joelspadin/tree-sitter-devicetree.git
