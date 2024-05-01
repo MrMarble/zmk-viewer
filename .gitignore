@@ -7,3 +7,4 @@ coverage.txt
 .task
 /zmk-layout-viewer
 /zmk-viewer
+.release-env
