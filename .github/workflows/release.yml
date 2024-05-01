@@ -15,9 +15,13 @@ jobs:
         uses: arduino/setup-task@v2
       - name: Install Go
         uses: actions/setup-go@v4
-      - name: setup release environment
-        run: |-
-          echo 'GITHUB_TOKEN=${{secrets.GITHUB_TOKEN}}' > .release-env
-      - name: Create release
+      - name: Prepare assets
         run: task cross
+      - name: Create release
+        uses: goreleaser/goreleaser-action@v5
+        with:
+          version: latest
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

@@ -3,7 +3,6 @@
 version: '3'
 
 env:
-  GO111MODULE: on
   GOPROXY: https://proxy.golang.org,direct
   CGO_ENABLED: 1
 
@@ -95,16 +94,17 @@ tasks:
 
   cross:
     desc: Cross compile the binary
-    preconditions:
-      - test -e .release-env
-    cmd: |
-      docker run \
-        --rm \
-        -e CGO_ENABLED=1 \
-        --env-file .release-env \
-        -v /var/run/docker.sock:/var/run/docker.sock \
-        -v `pwd`:/go/src/zmk-viewer \
-        -v `pwd`/sysroot:/sysroot \
-        -w /go/src/zmk-viewer \
-        ghcr.io/goreleaser/goreleaser-cross:v1.22 \
-        release --clean
+    vars:
+      VERSION:
+        sh: git describe --tags --always
+      COMMIT:
+        sh: git rev-parse --short HEAD
+      DATE:
+        sh: git log -1 --format=%cd --date=format:'%Y-%m-%d'
+    cmds: 
+      - |
+        xgo -targets='darwin/amd64,darwin/arm64,linux/386,linux/amd64,linux/arm64,windows-6.0/*' \
+          -ldflags='-s -w -X main.version={{.VERSION}} -X main.commit={{.COMMIT}} -X main.date={{.DATE}}' \
+          -out zmk-viewer-{{.VERSION}} \
+          ./cmd/zmk-viewer
+      - find . -maxdepth 1  -name 'zmk-viewer-*' -exec bash -c 'mv $0  ${0/-[0-9]*-/-}' {} \;

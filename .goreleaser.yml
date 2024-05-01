@@ -4,36 +4,82 @@ before:
   hooks:
     - go mod tidy
 
+builds:
+  - skip: true
+    goos:
+      - "linux"
+      - "windows"
+      - "darwin"
+
 release:
   github:
     owner: mrmarble
     name: zmk-viewer
 
-builds:
-  - binary: zmk-viewer
-    env:
-      - CGO_ENABLED=1
-    goos:
-      - linux
-      - windows
-      - darwin
-    main: ./cmd/zmk-viewer
-    flags:
-      - -trimpath
-    mod_timestamp: '{{ .CommitTimestamp }}'
-    ldflags: -s -w -X main.version={{.Version}} -X main.commit={{.ShortCommit}} -X main.date={{.CommitDate}}
-
 archives:
   - format: tar.gz
+    id: darwin-amd64
+    meta: true
     wrap_in_directory: true
-    format_overrides:
-      - goos: windows
-        format: zip
-    name_template: '{{ .ProjectName }}-{{ .Version }}-{{ .Os }}-{{ .Arch }}'
+    name_template: '{{ .ProjectName }}-{{ .Version }}-darwin-amd64'
     files:
       - LICENSE
       - README.md
-
+      - '{{ .ProjectName }}-v{{ .Version }}-darwin-amd64'
+  - format: tar.gz
+    id: darwin-arm64
+    meta: true
+    wrap_in_directory: true
+    name_template: '{{ .ProjectName }}-{{ .Version }}-darwin-arm64'
+    files:
+      - LICENSE
+      - README.md
+      - '{{ .ProjectName }}-v{{ .Version }}-darwin-arm64'
+  - format: tar.gz
+    id: linux-386
+    meta: true
+    wrap_in_directory: true
+    name_template: '{{ .ProjectName }}-{{ .Version }}-linux-386'
+    files:
+      - LICENSE
+      - README.md
+      - '{{ .ProjectName }}-v{{ .Version }}-linux-386'
+  - format: tar.gz
+    id: linux-amd64
+    meta: true
+    wrap_in_directory: true
+    name_template: '{{ .ProjectName }}-{{ .Version }}-linux-amd64'
+    files:
+      - LICENSE
+      - README.md
+      - '{{ .ProjectName }}-v{{ .Version }}-linux-amd64'
+  - format: tar.gz
+    id: linux-arm64
+    meta: true
+    wrap_in_directory: true
+    name_template: '{{ .ProjectName }}-{{ .Version }}-linux-arm64'
+    files:
+      - LICENSE
+      - README.md
+      - '{{ .ProjectName }}-v{{ .Version }}-linux-arm64'
+  - format: zip
+    id: windows-386
+    meta: true
+    wrap_in_directory: true
+    name_template: '{{ .ProjectName }}-{{ .Version }}-windows-386'
+    files:
+      - LICENSE
+      - README.md
+      - '{{ .ProjectName }}-v{{ .Version }}-windows-386.exe'
+  - format: zip
+    id: windows-amd64
+    meta: true
+    wrap_in_directory: true
+    name_template: '{{ .ProjectName }}-{{ .Version }}-windows-amd64'
+    files:
+      - LICENSE
+      - README.md
+      - '{{ .ProjectName }}-v{{ .Version }}-windows-amd64.exe'
 checksum:
   name_template: '{{ .ProjectName }}-{{ .Version }}-checksums.txt'
 
