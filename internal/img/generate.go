@@ -122,6 +122,7 @@ func (i *Image) GenerateSingle() (image.Image, error) {
 }
 
 func (i *Image) GenerateUnified() (image.Image, error) {
+	keymap, hasKeymap := parseKeymap(i.keymap)
 	for _, layout := range i.keyboard.Layouts {
 		layout := layout
 		ctx := createContext(&layout)
@@ -130,7 +131,7 @@ func (i *Image) GenerateUnified() (image.Image, error) {
 			ctx.Clear()
 		}
 		base := ctx.Image()
-		if keymap, ok := parseKeymap(i.keymap); ok {
+		if hasKeymap {
 			keys := make([]*keycap, len(layout.Layout))
 			for layerIndex, layer := range keymap.Layers {
 				for keyIndex, key := range layer.Bindings {
@@ -182,6 +183,11 @@ func parseKeymap(file string) (*keymap.Keymap, bool) {
 
 	if err != nil {
 		log.Err(err).Send()
+		return nil, false
+	}
+
+	if ast == nil {
+		log.Error().Msg("No keymap found.")
 		return nil, false
 	}
 	return ast, true
@@ -316,11 +322,11 @@ func formatKeyCode(key string, parseKeyCode bool) string {
 		str += key
 	}
 
-	if strings.HasPrefix(str, "LC") {
+	if strings.HasPrefix(str, "LC(") {
 		prefix = "⌃"
 		str = str[3 : len(str)-1]
 	}
-	if strings.HasPrefix(str, "LS") {
+	if strings.HasPrefix(str, "LS(") {
 		prefix += "⇧"
 		str = str[3 : len(str)-1]
 	}
