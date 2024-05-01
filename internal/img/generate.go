@@ -8,6 +8,7 @@ import (
 	"image/draw"
 	"math"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/fogleman/gg"
@@ -65,7 +66,9 @@ func WithKeymap(keymap string) func(*Image) {
 
 func (i *Image) GenerateLayouts() (map[string]image.Image, error) {
 	images := make(map[string]image.Image)
+	keymap, hasKeymap := parseKeymap(i.keymap)
 	for layoutName, layout := range i.keyboard.Layouts {
+		log.Debug().Str("Layout", layoutName).Msg("Generating layout")
 		layout := layout
 		ctx := createContext(&layout)
 		err := drawLayout(ctx, i.transparent, layout)
@@ -76,8 +79,13 @@ func (i *Image) GenerateLayouts() (map[string]image.Image, error) {
 		base := ctx.Image()
 		images[generateName(i.keyboard.Name, layoutName, "")] = base
 
-		if keymap, ok := parseKeymap(i.keymap); ok {
-			for _, layer := range keymap.Device.Keymap.Layers {
+		if hasKeymap {
+			for _, layer := range keymap.Layers {
+				log.Debug().Str("Layer", layer.Name).Msg("Generating layer")
+				if len(layer.Bindings) != len(layout.Layout) {
+					log.Warn().Str("Layer", layer.Name).Str("Layour", layoutName).Msg("Layer does not match layout")
+					continue
+				}
 				ctx := createContext(&layout)
 				ctx.DrawImage(base, 0, 0)
 				err := drawKeymap(ctx, layout, layer, i.raw, -1)
@@ -124,12 +132,13 @@ func (i *Image) GenerateUnified() (image.Image, error) {
 		base := ctx.Image()
 		if keymap, ok := parseKeymap(i.keymap); ok {
 			keys := make([]*keycap, len(layout.Layout))
-			for layerIndex, layer := range keymap.Device.Keymap.Layers {
+			for layerIndex, layer := range keymap.Layers {
 				for keyIndex, key := range layer.Bindings {
 					if layerIndex == 0 {
 						log.Debug().Msgf("Adding key %d", keyIndex)
 						x, y := getKeyCoords(layout.Layout[keyIndex])
 						keys[keyIndex] = newKeycap(x, y, keySize, keySize).fromKey(key, !i.raw)
+						keys[keyIndex].drawShape(ctx)
 					} else {
 						log.Debug().Msgf("Updating key %d", keyIndex)
 						keys[keyIndex].setLayer(layerIndex, key, !i.raw)
@@ -157,7 +166,7 @@ func generateName(name, layout, layer string) string {
 }
 
 // parseKeymap returns struct from a .keymap file.
-func parseKeymap(file string) (*keymap.File, bool) {
+func parseKeymap(file string) (*keymap.Keymap, bool) {
 	if file == "" {
 		return nil, false
 	}
@@ -178,15 +187,33 @@ func parseKeymap(file string) (*keymap.File, bool) {
 	return ast, true
 }
 
+func calculateImageWidth(layout keyboard.Layout) int {
+	currentColumn := -1.0
+	width := 0.0
+	for _, key := range layout.Layout {
+		if key.X > currentColumn {
+			currentColumn = key.X
+			if key.W != nil {
+				width += *key.W*keySize + spacer
+			} else {
+				width += keySize + spacer
+			}
+		}
+	}
+	log.Info().Float64("Width", width).Float64("Columns", currentColumn).Send()
+	return int(width + keySize + spacer)
+}
+
 // createContext from the calculated keyboard size.
 func createContext(layout *keyboard.Layout) *gg.Context {
 	mx := maxX(layout.Layout) + 1
 	my := maxY(layout.Layout) + 1
 
 	imageW := int((mx*keySize)+(mx*spacer)) + spacer
+	//imageW := calculateImageWidth(*layout) + spacer
 	imageH := int(math.Ceil((my*keySize)+(my+1.)*spacer) + (fontSize + spacer*2))
 
-	log.Debug().Int("Image Width", imageW).Int("Image Height", imageH).Float64("Max X", mx).Float64("Max Y", my).Send()
+	log.Debug().Int("Image Width", imageW).Int("Image Height", imageH).Float64("Max X", 0).Float64("Max Y", my).Send()
 
 	ctx := gg.NewContext(imageW, imageH)
 	f, err := truetype.Parse(firaCode)
@@ -220,7 +247,7 @@ func drawLayout(ctx *gg.Context, transparent bool, layout keyboard.Layout) error
 		if key.W != nil {
 			w = *key.W * keySize
 		}
-		newKeycap(x, y, w, h).draw(ctx)
+		newKeycap(x, y, w, h).drawShape(ctx)
 	}
 	return nil
 }
@@ -262,15 +289,15 @@ func newKeycap(x, y, w, h float64) *keycap {
 	return &keycap{x: x, y: y, w: w, h: h}
 }
 
-func (k *keycap) fromKey(key *keymap.Binding, parseKeyCode bool) *keycap {
-	if key.Params == nil || len(key.Params) == 0 {
+func (k *keycap) fromKey(key keymap.Binding, parseKeyCode bool) *keycap {
+	if key.Modifiers == nil || len(key.Modifiers) == 0 {
 		return k
 	}
 
-	k.base = formatKeyCode(key.Params[0], parseKeyCode)
-	if len(key.Params) > 1 {
-		k.base = formatKeyCode(key.Params[1], parseKeyCode)
-		k.mod = formatKeyCode(key.Params[0], parseKeyCode)
+	k.base = formatKeyCode(key.Modifiers[0], parseKeyCode)
+	if len(key.Modifiers) > 1 {
+		k.base = formatKeyCode(key.Modifiers[1], parseKeyCode)
+		k.mod = formatKeyCode(key.Modifiers[0], parseKeyCode)
 	}
 	if key.Action == "mo" {
 		k.base = "L" + k.base
@@ -278,49 +305,53 @@ func (k *keycap) fromKey(key *keymap.Binding, parseKeyCode bool) *keycap {
 	return k
 }
 
-func formatKeyCode(key *keymap.List, parseKeyCode bool) string {
+func formatKeyCode(key string, parseKeyCode bool) string {
 	str := ""
-	switch {
-	case key.KeyCode == nil:
-		str += fmt.Sprintf("%v", *key.Number)
-	case parseKeyCode:
-		str += keymap.GetSymbol(*key.KeyCode)
-	default:
-		str += *key.KeyCode
+	prefix := ""
+	if _, err := strconv.Atoi(key); err == nil {
+		str += key
+	} else if parseKeyCode {
+		str += keymap.GetSymbol(key)
+	} else {
+		str += key
 	}
 
 	if strings.HasPrefix(str, "LC") {
-		str = "⌃" + str[3:len(str)-1]
+		prefix = "⌃"
+		str = str[3 : len(str)-1]
+	}
+	if strings.HasPrefix(str, "LS") {
+		prefix += "⇧"
+		str = str[3 : len(str)-1]
 	}
 
-	return str
+	return prefix + str
 }
 
-func (k *keycap) setLayer(layer int, key *keymap.Binding, parseKeyCode bool) {
-	if key.Params == nil || len(key.Params) == 0 {
+func (k *keycap) setLayer(layer int, key keymap.Binding, parseKeyCode bool) {
+	if key.Modifiers == nil || len(key.Modifiers) == 0 {
 		return
 	}
 	switch layer {
 	case 1:
-		k.layer1 = formatKeyCode(key.Params[0], parseKeyCode)
+		k.layer1 = formatKeyCode(key.Modifiers[0], parseKeyCode)
 		if key.Action == "mo" {
 			k.layer1 = "L" + k.layer1
 		}
 	case 2:
-		k.layer2 = formatKeyCode(key.Params[0], parseKeyCode)
+		k.layer2 = formatKeyCode(key.Modifiers[0], parseKeyCode)
 		if key.Action == "mo" {
 			k.layer2 = "L" + k.layer2
 		}
 	case 3:
-		k.layer3 = formatKeyCode(key.Params[0], parseKeyCode)
+		k.layer3 = formatKeyCode(key.Modifiers[0], parseKeyCode)
 		if key.Action == "mo" {
 			k.layer3 = "L" + k.layer3
 		}
 	}
 }
 
-func (k *keycap) draw(ctx *gg.Context) {
-	log.Debug().Str("Base", k.base).Str("MOD", k.mod).Str("Layer1", k.layer1).Str("Layer2", k.layer2).Str("Layer3", k.layer3).Msg("Drawing key")
+func (k *keycap) drawShape(ctx *gg.Context) {
 	ctx.DrawRoundedRectangle(k.x, k.y, k.w, k.h, radius)
 
 	// Border
@@ -335,6 +366,10 @@ func (k *keycap) draw(ctx *gg.Context) {
 	ctx.DrawRoundedRectangle(k.x+margin, k.y+4, k.w-(margin*2), k.h-(margin*2), radius/2.0)
 	ctx.SetColor(color.RGBA{R: 0xa7, G: 0xa7, B: 0xa7, A: 0xff})
 	ctx.Fill()
+}
+
+func (k *keycap) draw(ctx *gg.Context) {
+	log.Debug().Str("Base", k.base).Str("MOD", k.mod).Str("Layer1", k.layer1).Str("Layer2", k.layer2).Str("Layer3", k.layer3).Msg("Drawing key")
 
 	if k.base != "" {
 		ctx.SetColor(color.Black)

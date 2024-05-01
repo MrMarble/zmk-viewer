@@ -1,0 +1,3592 @@
+
+[TestParse/corne.keymap - 1]
+&keymap.Keymap{
+    Layers: {
+        &keymap.Layer{
+            Name:     "win_base",
+            Bindings: {
+                {
+                    Action:    "&kp",
+                    Modifiers: {"TAB"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Q"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"W"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"E"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"R"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"T"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Y"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"U"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"I"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"O"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"P"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BSPC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LSHIFT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"A"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"S"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"D"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"G"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"H"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"J"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"L"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SEMI"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SQT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LEFT_WIN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Z"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"X"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"V"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"B"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"M"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"COMMA"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DOT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"FSLH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"ESC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LCTRL"},
+                },
+                {
+                    Action:    "&hold_for_layer_shft",
+                    Modifiers: {"1", "ENTER"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SPACE"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BACKSPACE"},
+                },
+                {
+                    Action:    "&hold_for_layer_shft",
+                    Modifiers: {"2", "TAB"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RIGHT_SHIFT"},
+                },
+            },
+        },
+    },
+}
+---
+
+[TestParse/cradio.keymap - 1]
+&keymap.Keymap{
+    Layers: {
+        &keymap.Layer{
+            Name:     "default_layer",
+            Bindings: {
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Q"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"W"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"E"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"R"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"T"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Y"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"U"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"I"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"O"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"P"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"A"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"S"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"D"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"G"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"H"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"J"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"L"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"QUOT"},
+                },
+                {
+                    Action:    "&mt",
+                    Modifiers: {"LSFT", "Z"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"X"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"V"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"B"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"M"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"CMMA"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DOT"},
+                },
+                {
+                    Action:    "&mt",
+                    Modifiers: {"LSFT", "RET"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LCTL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SPC"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"2"},
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "left_layer",
+            Bindings: {
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_7"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_8"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_9"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LC(LS(TAB))"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LC(S)"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DQT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PIPE2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"HASH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"MINUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"EQL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DEL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"ESC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"TILDE"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NON_US_BSLH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NON_US_HASH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"TILDE2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"MINUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"GRAVE"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DEL"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LGUI"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RGUI"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"2"},
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "right_layer",
+            Bindings: {
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BANG"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"ATSN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"HASH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DLLR"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PRCT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"CRRT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"AMPS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"KMLT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LPRN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RPRN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"HASH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"QMARK"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"FSLH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"COLN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SCLN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"MINUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"KP_EQUAL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LBRC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RBRC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BKSP"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LSFT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"KPLS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BSLH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"UNDER"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LEFT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DOWN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"UP"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RIGHT"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LCTL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SPC"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"2"},
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "tri_layer",
+            Bindings: {
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F5"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PG_UP"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K_VOL_UP"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K_MUTE"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_CLR"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_NXT"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_PRV"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F7"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PG_DN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K_VOL_DN"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+            },
+        },
+    },
+}
+---
+
+[TestParse/cradio_HRM.keymap - 1]
+&keymap.Keymap{
+    Layers: {
+        &keymap.Layer{
+            Name:     "default_layer",
+            Bindings: {
+                {
+                    Action:    "//╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮",
+                    Modifiers: {"//│  Q       │  W       │  E       │  R       │  T       │   │  Y       │  U       │  I       │  O       │  P       │"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Q"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"W"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"E"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"R"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"T"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Y"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"U"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"I"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"O"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"P", "//├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤", "//│  A       │  S       │  D       │  F       │  G       │   │  H       │  J       │  K       │  L       │ ' \"      │", "HRML(A,        S,         D,         F)"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"G"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"H", "HRMR(J,        K,         L,        SQT)", "//├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤", "//│  Z       │  X       │  C       │  V       │  B       │   │  N       │  M       │ , <      │ . >      │ / ?      │"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Z"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"X"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"V"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"B"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"M"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"COMMA"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DOT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"FSLH", "//╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯"},
+                },
+                {
+                    Action:    "&lt",
+                    Modifiers: {"2", "TAB"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"ENTER"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SPACE"},
+                },
+                {
+                    Action:    "&lt",
+                    Modifiers: {"1", "BSPC", "//                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯"},
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "right_layer",
+            Bindings: {
+                {
+                    Action:    "//╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮",
+                    Modifiers: {"//│ INSERT   │  1       │  2       │  3       │          │   │ HOME     │ PAGE DN  │ PAGE UP  │ END      │  :       │"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"INS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N3"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"HOME"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PG_DN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PG_UP"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"END"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"COLON", "//├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤", "//│ DELETE   │  4       │  5       │  6       │          │   │ LEFT     │ DOWN     │ UP       │ RIGHT    │  ;       │"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DEL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N6"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"UARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SEMI", "//├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤", "//│ CAPS     │  7       │  8       │  9       │  0       │   │          │          │          │          │          │"},
+                },
+                {
+                    Action:    "&caps_word",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N7"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N8"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N9"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N0"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: {"//╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"ESC"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: {"//                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯"},
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "left_layer",
+            Bindings: {
+                {
+                    Action:    "//╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮",
+                    Modifiers: {"//│          │  [       │  {       │  }       │          │   │  ^       │  (       │  )       │  ]       │  ~       │"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LBRC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RBRC"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"CARET"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LPAR"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RPAR"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"TILDE", "//├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤", "//│  !       │  @       │  #       │  $       │  %       │   │  *       │  -       │  =       │  \\       │  `       │"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"EXCL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"AT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"HASH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DLLR"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PRCNT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"ASTRK"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"MINUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"EQUAL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BSLH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"GRAVE", "//├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤", "//│          │          │          │          │          │   │  &       │  _       │  +       │  │       │          │"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"AMPS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"UNDER"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PLUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PIPE"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: {"//╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: {"//                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯"},
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "tri_layer",
+            Bindings: {
+                {
+                    Action:    "//╭──────────┬──────────┬──────────┬──────────┬──────────╮   ╭──────────┬──────────┬──────────┬──────────┬──────────╮",
+                    Modifiers: {"//│ RESET    │          │          │          │PROFILE 0 │   │          │          │          │          │  RESET   │"},
+                },
+                {
+                    Action:    "&sys_reset",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "0"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&sys_reset",
+                    Modifiers: {"//├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤", "//│BOOTLOADER│          │          │          │PROFILE 1 │   │          │          │          │          │BOOTLOADER│"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "1"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "//├──────────┼──────────┼──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┼──────────┼──────────┤",
+                    Modifiers: {"//│          │          │          │ CLEAR BT │PROFILE 2 │   │          │          │          │          │          │"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_CLR"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "2"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: {"//╰──────────┴──────────┴──────────┼──────────┼──────────┤   ├──────────┼──────────┼──────────┴──────────┴──────────╯"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: {"//                                 ╰──────────┴──────────╯   ╰──────────┴──────────╯"},
+                },
+            },
+        },
+    },
+}
+---
+
+[TestParse/slicemk.keymap - 1]
+&keymap.Keymap{
+    Layers: {
+        &keymap.Layer{
+            Name:     "layer_test",
+            Bindings: {
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUM_5"},
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "layer_0",
+            Bindings: {
+                {
+                    Action:    "&kp",
+                    Modifiers: {"GRAV"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PRSC"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_7"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_8"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_9"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K_APP"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"TAB"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Q"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"W"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"E"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"R"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"T"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"CLCK"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"M_MUTE"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Y"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"U"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"I"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"O"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"P"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BSLH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"ESC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"A"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"S"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"D"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"G"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"H"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"J"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"L"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SEMICOLON"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BKSP"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Z"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"X"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"V"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"B"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"M_VOLD"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"M_VOLU"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"M"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"CMMA"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DOT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"FSLH"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"2"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LALT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"UARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RALT"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&to",
+                    Modifiers: {"3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DEL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"HOME"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"END"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"INS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LSFT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LCTL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PGUP"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PGDN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SPC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LGUI"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RET"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"1"},
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "layer_1",
+            Bindings: {
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "0"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "1"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "2"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "3"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "4"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&out",
+                    Modifiers: {"OUT_USB"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F4"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F13"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F14"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F15"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F16"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&out",
+                    Modifiers: {"OUT_BLE"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F7"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F8"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F17"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F18"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F19"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F20"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F9"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F10"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F11"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F12"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F21"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F22"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F23"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F24"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_CLR"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "layer_2",
+            Bindings: {
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C_POWER"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C_PLAY_PAUSE"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PLUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"EQUAL"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"MINUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"UNDERSCORE"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RBKT"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C_PREVIOUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C_NEXT"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LEFT_BRACE"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RIGHT_BRACE"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SINGLE_QUOTE"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DOUBLE_QUOTES"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "layer_3",
+            Bindings: {
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"TAB"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_7"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_8"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_9"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SLASH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"ASTERISK"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"MINUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PLUS"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BKSP"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DOT"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C_BRIGHTNESS_DEC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C_BRIGHTNESS_INC"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"NUMBER_3"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"UARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DARW"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RARW"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&to",
+                    Modifiers: {"0"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SPC"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RET"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+            },
+        },
+    },
+}
+---
+
+[TestParse/sofle.keymap - 1]
+&keymap.Keymap{
+    Layers: {
+        &keymap.Layer{
+            Name:     "default_layer",
+            Bindings: {
+                {
+                    Action:    "&kp",
+                    Modifiers: {"GRAVE"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N7"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N8"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N9"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N0"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"ESC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Q"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"W"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"E"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"R"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"T"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Y"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"U"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"I"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"O"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"P"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BSPC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"TAB"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"A"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"S"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"D"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"G"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"H"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"J"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"L"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SEMI"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SQT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LSHFT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"Z"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"X"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"V"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"B"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"C_MUTE"},
+                },
+                {
+                    Action:    "&none",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"M"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"COMMA"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DOT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"FSLH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RSHFT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LGUI"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LALT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LCTRL"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RET"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SPACE"},
+                },
+                {
+                    Action:    "&mo",
+                    Modifiers: {"2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RCTRL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RALT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RGUI"},
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "lower_layer",
+            Bindings: {
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F7"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F8"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F9"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F10"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F11"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"GRAVE"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N1"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N2"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N3"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N4"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N5"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N6"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N7"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N8"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N9"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N0"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"F12"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"EXCL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"AT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"HASH"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DLLR"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PRCNT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"CARET"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"AMPS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"KP_MULTIPLY"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LPAR"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RPAR"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PIPE"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"EQUAL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"MINUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"KP_PLUS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LBRC"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RBRC"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RBKT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"SEMI"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"COLON"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BSLH"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+            },
+        },
+        &keymap.Layer{
+            Name:     "raise_layer",
+            Bindings: {
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_CLR"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "0"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "1"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "2"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "3"},
+                },
+                {
+                    Action:    "&bt",
+                    Modifiers: {"BT_SEL", "4"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"INS"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PSCRN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K_CMENU"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PG_UP"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"UP"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"N0"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LALT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LCTRL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LSHFT"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"CLCK"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"PG_DN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"LEFT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DOWN"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"RIGHT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"DEL"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"BSPC"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K_UNDO"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K_CUT"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K_COPY"},
+                },
+                {
+                    Action:    "&kp",
+                    Modifiers: {"K_PASTE"},
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+                {
+                    Action:    "&trans",
+                    Modifiers: nil,
+                },
+            },
+        },
+    },
+}
+---
