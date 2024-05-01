@@ -8,12 +8,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
+      - run: git fetch --prune --unshallow
+      - name: Install Task
+        uses: arduino/setup-task@v2
       - name: Install Go
         uses: actions/setup-go@v4
+      - name: setup release environment
+        run: |-
+          echo 'GITHUB_TOKEN=${{secrets.GITHUB_TOKEN}}' > .release-env
       - name: Create release
-        uses: goreleaser/goreleaser-action@v5
-        with:
-          version: latest
-          args: release --clean
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: task cross
+

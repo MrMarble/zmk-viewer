@@ -90,4 +90,21 @@ tasks:
       SNAPSHOT:
         sh: 'if [[ $GITHUB_REF != refs/tags/v* ]]; then echo "--snapshot"; fi'
     cmds:
-      - goreleaser release --rm-dist {{.SNAPSHOT}}
+      - goreleaser release --clean {{.SNAPSHOT}}
+
+
+  cross:
+    desc: Cross compile the binary
+    preconditions:
+      - test -e .release-env
+    cmd: |
+      docker run \
+        --rm \
+        -e CGO_ENABLED=1 \
+        --env-file .release-env \
+        -v /var/run/docker.sock:/var/run/docker.sock \
+        -v `pwd`:/go/src/zmk-viewer \
+        -v `pwd`/sysroot:/sysroot \
+        -w /go/src/zmk-viewer \
+        ghcr.io/goreleaser/goreleaser-cross:1.22 \
+        release --clean
