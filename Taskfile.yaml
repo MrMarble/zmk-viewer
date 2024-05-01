@@ -5,7 +5,7 @@ version: '3'
 env:
   GO111MODULE: on
   GOPROXY: https://proxy.golang.org,direct
-
+  GCOENABLE: 1
 
 tasks:
   dev:
@@ -42,7 +42,7 @@ tasks:
       SOURCE_FILES: '{{default "./..." .SOURCE_FILES}}'
       TEST_PATTERN: '{{default "." .TEST_PATTERN}}'
     cmds:
-      - go test {{.TEST_OPTIONS}} -failfast -race -coverpkg=./... -covermode=atomic -coverprofile=coverage.txt {{.SOURCE_FILES}} -run {{.TEST_PATTERN}} -timeout=5m
+      - go test {{.TEST_OPTIONS}} -failfast -race -coverpkg=./... -covermode=atomic -coverprofile=coverage.txt {{.SOURCE_FILES}} -run {{.TEST_PATTERN}} -timeout=30s
 
   cover:
     desc: Open the cover tool

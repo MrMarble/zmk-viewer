@@ -8,21 +8,21 @@ func GetSymbol(key string) string {
 	}
 
 	switch key {
-	case "LSFT", "RSFT":
+	case "LSFT", "RSFT", "LSHIFT", "RSHIFT", "RIGHT_SHIFT", "LEFT_SHIFT":
 		return "Shift" // "⇧"
-	case "LCTL", "RCTL":
+	case "LCTL", "RCTL", "LCTRL", "RCTRL":
 		return "Ctrl" // "⌃"
 	case "LALT", "RALT":
 		return "Alt" // "⌥"
-	case "SPC":
+	case "SPC", "SPACE":
 		return "Spc" // "␣"
 	case "RET", "RETURN", "ENTER":
 		return "Enter" // "⏎"
-	case "CMMA":
+	case "CMMA", "COMMA":
 		return ","
 	case "DOT":
 		return "."
-	case "QUOT":
+	case "QUOT", "SQT":
 		return "'"
 	case "TAB":
 		return "⇥"
@@ -54,7 +54,7 @@ func GetSymbol(key string) string {
 		return "\""
 	case "GRAVE":
 		return "`"
-	case "LGUI", "RGUI":
+	case "LGUI", "RGUI", "LEFT_WIN", "RIGHT_WIN":
 		return "⌘"
 	case "UP":
 		return "↑"
@@ -64,7 +64,7 @@ func GetSymbol(key string) string {
 		return "←"
 	case "RIGHT":
 		return "→"
-	case "BKSP":
+	case "BKSP", "BSPC", "BACKSPACE":
 		return "⌫"
 	case "UNDER":
 		return "_"
@@ -80,7 +80,7 @@ func GetSymbol(key string) string {
 		return ")"
 	case "COLN":
 		return ":"
-	case "SCLN":
+	case "SCLN", "SEMI":
 		return ";"
 	case "DLLR":
 		return "$"

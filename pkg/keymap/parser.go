@@ -1,112 +1,155 @@
 package keymap
 
 import (
+	"context"
 	"io"
+	"strings"
 
-	"github.com/alecthomas/participle/v2"
-	"github.com/alecthomas/participle/v2/lexer"
+	"github.com/mrmarble/zmk-viewer/pkg/devicetree"
+	sitter "github.com/smacker/go-tree-sitter"
 )
-
-var parser = participle.MustBuild[File](participle.UseLookahead(2),
-	participle.Unquote("String"),
-)
-
-type File struct {
-	Pos lexer.Position
-
-	Includes []*Include `parser:"@@+"`
-	Defines  []*Define  `parser:"@@*"`
-	Configs  []*Config  `parser:"@@*"`
-	Device   *Device    `parser:"'/' '{' @@ '}'';'"`
-}
-
-type Include struct {
-	Pos lexer.Position
-
-	Value string `parser:"'#'Ident'<'@((Ident ('-' Ident)? '/'?)* ('.' Ident))'>'"`
-}
-
-type Define struct {
-	Pos lexer.Position
-
-	Value string `parser:"'#'Ident @Ident '('?((Ident|Int)','?)*')'? ('&'Ident Ident Ident)*"`
-}
-
-type Config struct {
-	Pos lexer.Position
-
-	Behavior string     `parser:"'&'@Ident '{'"`
-	Values   []*Options `parser:"@@* '}'';'"`
-}
-
-type Options struct {
-	Key   *string `parser:"@Ident '='"`
-	Value *Value  `parser:"@@ ';'"`
-}
-
-type Value struct {
-	String *string `parser:"  @String"`
-	Number *int    `parser:"| '<'@Int'>'"`
-}
-
-type Device struct {
-	Pos lexer.Position
-
-	Combos *Combos `parser:"('combos' '{' @@)?"`
-	Keymap *Keymap `parser:"'keymap' '{' @@"`
-}
-
-type Combos struct {
-	Pos lexer.Position
-
-	Compatible string   `parser:"'compatible' '=' @String';'"`
-	Combos     []*Combo `parser:"@@* '}'';'"`
-}
-
-type Combo struct {
-	Pos lexer.Position
-
-	Name         string     `parser:"@Ident '{'"`
-	Timeout      int32      `parser:"'timeout''-''ms' '=' '<'@Int'>'';'"`
-	KeyPositions []*List    `parser:"'key''-''positions' '=' '<'@@+'>'';'"`
-	Bindings     []*Binding `parser:"'bindings' '=' '<'@@+'>'';' '}'';'"`
-}
 
 type Keymap struct {
-	Pos lexer.Position
-
-	Compatible string   `parser:"'compatible' '=' @String';'"`
-	Layers     []*Layer `parser:"@@+ '}'';'"`
+	Layers []*Layer
 }
 
 type Layer struct {
-	Pos lexer.Position
-
-	Name           string     `parser:"@Ident '{'"`
-	DisplayName    string     `parser:"('display-name' '=' @String';')?"`
-	Bindings       []*Binding `parser:"'bindings' '=' '<'@@+'>'';'"`
-	SensorBindings []*Binding `parser:"('sensor''-''bindings' '=' '<'@@+'>'';')?"`
-	Label          *string    `parser:"('label' '=' @String ';')?"`
-	EndBrace       string     `parser:" '}'';'"`
-}
-
-type List struct {
-	Number  *int32  `parser:"@Int"`
-	KeyCode *string `parser:"| @(Ident('('Ident('('Ident')')?')')?)"`
+	Name     string
+	Bindings []Binding
 }
 
 type Binding struct {
-	Pos lexer.Position
-
-	Action string  `parser:"'&'@Ident"`
-	Params []*List `parser:"@@*"`
+	Action    string
+	Modifiers []string
 }
 
-func Parse(r io.Reader) (*File, error) {
-	ast, err := parser.Parse("", r)
-	return ast, err
+func parse(source []byte) (*sitter.Tree, error) {
+	parser := sitter.NewParser()
+	parser.SetLanguage(devicetree.GetLanguage())
+
+	return parser.ParseCtx(context.Background(), nil, source)
 }
 
-func Enbf() string {
-	return parser.String()
+func getKeymap(tree *sitter.Tree, source []byte) (*sitter.Node, error) {
+	q, _ := sitter.NewQuery([]byte(`((node (identifier) @keymap) @node (#eq? @keymap "keymap"))`), devicetree.GetLanguage())
+	qc := sitter.NewQueryCursor()
+	qc.Exec(q, tree.RootNode())
+
+	var keymap *sitter.Node
+
+	// Iterate over query results
+	for {
+		m, ok := qc.NextMatch()
+		if !ok {
+			break
+		}
+		// Apply predicates filtering
+		m = qc.FilterPredicates(m, source)
+		if m == nil || len(m.Captures) == 0 {
+			continue
+		}
+		if m.Captures[0].Node != nil {
+			keymap = m.Captures[0].Node
+			break
+		}
+	}
+
+	return keymap, nil
+}
+
+func getLayers(keymap *sitter.Node, source []byte) ([]*sitter.Node, error) {
+	q, _ := sitter.NewQuery([]byte(`((node (identifier) @ident) @node (#not-eq? @ident "keymap"))`), devicetree.GetLanguage())
+	qc := sitter.NewQueryCursor()
+	qc.Exec(q, keymap)
+
+	var layers []*sitter.Node
+
+	// Iterate over query results
+	for {
+		m, ok := qc.NextMatch()
+		if !ok {
+			break
+		}
+		// Apply predicates filtering
+		m = qc.FilterPredicates(m, source)
+		if m == nil || len(m.Captures) == 0 {
+			continue
+		}
+		if m.Captures[0].Node != nil {
+			layers = append(layers, m.Captures[0].Node)
+		}
+	}
+	return layers, nil
+}
+
+func parseLayer(layer *sitter.Node, source []byte) (*Layer, error) {
+	l := &Layer{}
+	l.Name = layer.Child(0).Content(source)
+	for i := 0; i < int(layer.ChildCount()); i++ {
+		if layer.Child(i).Type() == "property" && layer.Child(i).Content(source)[:8] == "bindings" {
+			var bindings []Binding
+			b := layer.Child(i).Child(2).Child(1)
+			for {
+				action := b.Content(source)
+				if action == "&bootloader" {
+					b = b.NextSibling()
+					continue
+				}
+				var modifiers []string
+				for {
+					if b.NextSibling() == nil || b.NextSibling().Type() == ">" {
+						break
+					}
+					modifier := b.NextSibling().Content(source)
+					if strings.HasPrefix(modifier, "&") {
+						break
+					}
+					modifiers = append(modifiers, modifier)
+					b = b.NextSibling()
+				}
+
+				bindings = append(bindings, Binding{Action: action, Modifiers: modifiers})
+
+				b = b.NextSibling()
+				if b == nil || b.Type() == ">" {
+					break
+				}
+			}
+			l.Bindings = bindings
+		}
+	}
+	return l, nil
+}
+
+func Parse(r io.Reader) (*Keymap, error) {
+	source, err := io.ReadAll(r)
+	if err != nil {
+		return nil, err
+	}
+
+	tree, err := parse(source)
+	if err != nil {
+		return nil, err
+	}
+
+	keymap, err := getKeymap(tree, source)
+	if err != nil {
+		return nil, err
+	}
+
+	layers, err := getLayers(keymap, source)
+	if err != nil {
+		return nil, err
+	}
+
+	parsedLayers := make([]*Layer, 0, len(layers))
+	for _, layer := range layers {
+		parsedLayer, err := parseLayer(layer, source)
+		if err != nil {
+			return nil, err
+		}
+		parsedLayers = append(parsedLayers, parsedLayer)
+	}
+
+	return &Keymap{Layers: parsedLayers}, nil
 }

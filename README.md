@@ -96,3 +96,8 @@ zmk-viewer generate -f ~/zmk-config/config/cradio.keymap cradio --unified
 will output one image with all layers stacked:
 
 ![](assets/unified.png)
+
+
+## ⭐ Stargazers
+
+[![Star History Chart](https://api.star-history.com/svg?repos=mrmarble/zmk-viewer&type=Date)](https://star-history.com/#mrmarble/zmk-viewer&Date)

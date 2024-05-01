@@ -1,7 +1,7 @@
 out
 dist
 /*.png
-*.keymap
+/*.keymap
 *.json
 coverage.txt
 .task
